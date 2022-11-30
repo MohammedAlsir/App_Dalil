@@ -1,0 +1,92 @@
+/* Start Our Framework */
+
+.container {
+    width: 1200px;
+    margin: auto;
+    position: relative;
+}
+.table {
+    height: 100%;
+    display: table;
+}
+.table-row {
+    display: table-row;
+}
+.text-center {
+    text-align: center;
+}
+.upper {
+    text-transform: uppercase;
+    font-size: 100px;
+}
+.main-color {
+    color: #f7600e;
+}
+.main-background {
+    background-color: #f7600e;
+}
+/* End Our Framework */
+
+/* Start Header */
+.header {
+    background: url(../images/food.jpg) no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+}
+.header .overlay {
+    /* Sit on top of the page content */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 1000px; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3); /* Black background with opacity */
+}
+.header .navbar {
+    overflow: hidden;
+    padding: 20px 0;
+    position: absolute;
+    top: 0;
+    text-align: end;
+    left: 0;
+    width: 100%;
+}
+.header .navbar .links {
+    float: right;
+}
+.header .navbar .links i {
+    margin-left: 5px;
+}
+.header .intro h1 {
+    margin: 0;
+    padding-top: 150px;
+    font-size: 100px;
+    font-weight: 800;
+}
+.header .intro p {
+    margin: 20px 0 40px;
+    line-height: 1.9;
+    font-size: 20px;
+    color: #e2e2e2;
+}
+.header .buttons button {
+    background: transparent;
+    padding: 10px 0;
+    width: 400px;
+    font-size: 30px;
+    border: 1px solid #909090;
+    margin: 0 4px;
+    border-radius: 10px;
+    transition: all 0.5s ease-in-out;
+}
+.header .buttons a button {
+    text-decoration: none;
+    color: #fff;
+}
+.header .buttons button:hover {
+    background-color: #f7600e;
+    border-color: #f7600e;
+}
+
+/* End Header */
