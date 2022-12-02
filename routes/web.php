@@ -29,4 +29,7 @@ Route::namespace('App\Http\Controllers')->middleware(['auth'])->group(function (
 
     Route::get('settings', 'SettingController@settings')->name('settings');
     Route::put('settings', 'SettingController@settings_edit')->name('settings_edit');
+
+    Route::resource('hotels', 'HotelController');
+    Route::resource('hotel/appartment', 'HotelAppartmentController');
 });

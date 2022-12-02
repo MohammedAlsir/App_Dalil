@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use \Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +21,15 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api'], func
     Route::post('login', 'AuthController@login'); // == Login ==
     Route::post('register', 'AuthController@register'); // == Login ==
 
-    // == This routes user must be logged in ==
-    Route::group(['middleware' => ['auth:api']], function () {
-    });
+    Route::group(
+        [
+            'prefix' => LaravelLocalization::setLocale(),
+            'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
+        ],
+        function () {
+            // == This routes user must be logged in ==
+            Route::group(['middleware' => ['auth:api']], function () {
+            });
+        }
+    );
 });

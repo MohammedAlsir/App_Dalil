@@ -48,7 +48,8 @@
 
 
 @include('layouts.js')
-@yield('after_js')
+
+{{-- @stack('js') --}}
 
 
 

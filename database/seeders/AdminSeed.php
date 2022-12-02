@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class AdminSeed extends Seeder
@@ -15,6 +16,7 @@ class AdminSeed extends Seeder
      */
     public function run()
     {
+
         $user  = new User();
         $user->name = 'admin';
         $user->email = 'admin';

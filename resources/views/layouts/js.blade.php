@@ -22,17 +22,17 @@
     {{-- <script src="{{ asset('vendors/iCheck/icheck.min.js') }}"></script> --}}
     <!-- Datatables -->
     <script src="{{ asset('vendors/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-    {{-- <script src="{{ asset('vendors/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('vendors/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('vendors/datatables.net-buttons/js/buttons.flash.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('vendors/datatables.net-buttons/js/buttons.html5.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('vendors/datatables.net-buttons/js/buttons.print.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('vendors/datatables.net-keytable/js/dataTables.keyTable.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('vendors/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js') }}"></script> --}}
-    {{-- <script src="{{ asset('vendors/datatables.net-scroller/js/dataTables.scroller.min.js') }}"></script> --}}
+    <script src="{{ asset('vendors/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('vendors/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('vendors/datatables.net-buttons/js/buttons.flash.min.js') }}"></script>
+    <script src="{{ asset('vendors/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('vendors/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js') }}"></script>
+    <script src="{{ asset('vendors/datatables.net-keytable/js/dataTables.keyTable.min.js') }}"></script>
+    <script src="{{ asset('vendors/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js') }}"></script>
+    <script src="{{ asset('vendors/datatables.net-scroller/js/dataTables.scroller.min.js') }}"></script>
     {{-- <script src="{{ asset('vendors/jszip/dist/jszip.min.js') }}"></script> --}}
     {{-- <script src="{{ asset('vendors/pdfmake/build/pdfmake.min.js') }}"></script> --}}
     {{-- <script src="{{ asset('vendors/pdfmake/build/vfs_fonts.js') }}"></script> --}}
@@ -47,7 +47,7 @@
     {{-- <script src="{{ asset('vendors/switchery/dist/switchery.min.js') }}"></script> --}}
 
     <!-- Select2 -->
-    {{-- <script src="{{ asset('vendors/select2/dist/js/select2.full.min.js') }}"></script> --}}
+    <script src="{{ asset('vendors/select2/dist/js/select2.full.min.js') }}"></script>
     <!-- Custom Theme Scripts -->
     <script src="{{ asset('build/js/chart.js') }}"></script>
     <script src="{{ asset('build/js/custom.js') }}"></script>
@@ -88,115 +88,12 @@
         });
 </script>
 
-<script type="text/javascript">
 
-     $('.show_confirm2').click(function(event) {
-          var form =  $(this).closest("form");
-          var name = $(this).data("name");
-          event.preventDefault();
-          swal({
-              title: `هل تريد إلغاء التسليم بالفعل ؟`,
-            //   text: "في حالة الموافقة لا يمكنك التراجع عن هذا الاجراء !",
-              icon: "warning",
-              buttons: true,
-              dangerMode: true,
-                ButtonColor: "#1cc88a",
-
-              buttons: [ 'إلغاء ',' ! نعم ,    إلغاء التسليم ']
-
-          })
-          .then((willDelete) => {
-            if (willDelete) {
-              form.submit();
-            }
-          });
-      });
-
-
-</script>
-
-
-<script type="text/javascript">
-
-     $('.show_confirm_item').click(function(event) {
-          var form =  $(this).closest("form");
-          var name = $(this).data("name");
-          event.preventDefault();
-          swal({
-              title: `هل تريد إلغاء الطلب بالفعل ؟`,
-              text: "في حالة الموافقة لا يمكنك التراجع عن هذا الاجراء !",
-              icon: "warning",
-              buttons: true,
-              dangerMode: true,
-                ButtonColor: "#1cc88a",
-
-              buttons: [ 'إلغاء ',' ! نعم ,    إلغاء الطلب ']
-
-          })
-          .then((willDelete) => {
-            if (willDelete) {
-              form.submit();
-            }
-          });
-      });
-
-
-</script>
-
-
-
-<script type="text/javascript">
-
-     $('.show_confirm_ref').click(function(event) {
-          var form =  $(this).closest("form");
-          var name = $(this).data("name");
-          event.preventDefault();
-          swal({
-              title: `هل تريد تحديث اسعار البيع بالفعل ؟`,
-              text: "في حالة الموافقة لا يمكنك التراجع عن هذا الاجراء وسيتم تحديث كل السعار !",
-              icon: "warning",
-              buttons: true,
-              dangerMode: true,
-              ButtonColor:'#1cc88a',
-
-              buttons: [ 'إلغاء ',' ! نعم ,    حدث الأسعار ']
-            //   buttons: [' ! نعم ,   حذف السجل ', 'إلغاء ']
-          })
-          .then((willDelete) => {
-            if (willDelete) {
-              form.submit();
-            }
-          });
-      });
-
-</script>
-
-<script type="text/javascript">
-
-     $('.show_confirm_all').click(function(event) {
-          var form =  $(this).closest("form");
-          var name = $(this).data("name");
-          event.preventDefault();
-          swal({
-              title: `هل تريد حذف  الفاتورة بالفعل  ؟`,
-              text: "في حالة الموافقة لا يمكنك التراجع عن هذا الاجراء وسيتم حذف كل المشتريات المتعلقة بالفاتورة !",
-              icon: "warning",
-              buttons: true,
-              dangerMode: true,
-              ButtonColor:'#1cc88a',
-
-              buttons: [ 'إلغاء ',' ! نعم ,    حذف الفاتورة  ']
-            //   buttons: [' ! نعم ,   حذف السجل ', 'إلغاء ']
-          })
-          .then((willDelete) => {
-            if (willDelete) {
-              form.submit();
-            }
-          });
-      });
-
-</script>
+@stack('js')
 
 @livewireScripts
+
+{{-- @yield('js') --}}
+
 
 

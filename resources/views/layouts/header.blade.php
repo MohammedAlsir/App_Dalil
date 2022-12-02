@@ -27,24 +27,25 @@
                 <ul class="nav side-menu">
                     <li><a href="{{route('home')}}"><i class="fa fa-home"></i>الصفحة الرئيسية</a></li>
 
-
-
-
-
-
-
-
-
-
-                    {{-- @if (auth()->user()->purcheses_status =='on')
-                    <li><a><i class="fa fa-cubes"></i> إدارة المكونات <span class="fa fa-chevron-down"></span></a>
+                    <!-- Hotels -->
+                    <li><a><i class="fa fa-cubes"></i>الفنادق<span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="{{route('component.index')}}">كل المكونات</a></li>
-                            <li><a href="{{route('component.create')}}">إضافة مكون جديد</a></li>
+                            <li><a href="{{route('hotels.index')}}">كل الفنادق</a></li>
+                            <li><a href="{{route('hotels.create')}}">إضافة فندق جديد</a></li>
                         </ul>
                     </li>
 
-                    <li><a><i class="fa fa-arrow-up"></i> إدارة المشتريات <span class="fa fa-chevron-down"></span></a>
+                     <li><a><i class="fa fa-cubes"></i>الشقق الفندقية<span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="{{route('appartment.index')}}">كل الشقق</a></li>
+                            <li><a href="{{route('appartment.create')}}">إضافة شقة جديدة</a></li>
+                        </ul>
+                    </li>
+
+
+                    <!-- Hotels -->
+
+                     {{-- <li><a><i class="fa fa-arrow-up"></i> إدارة المشتريات <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{route('purchases.index')}}">كل المشتريات</a></li>
                             <li><a href="{{route('purchases.create')}}">إضافة مشتريات جديدة</a></li>
@@ -56,17 +57,7 @@
                             <li><a href="{{route('store.index')}}">المخزن الرئيسي </a></li>
                             <li><a href="{{route('store.kitchen')}}">المطبخ</a></li>
                         </ul>
-                    </li>
-
-
-                    @endif --}}
-
-
-
-
-
-
-
+                    </li> --}}
 
 
                 </ul>
