@@ -30,6 +30,7 @@
                     </li>
                     <li><i class="fa fa-map-marker user-profile-icon"></i>
                         {{$hotel->city->state->name_en}} - {{$hotel->city->name_en}}
+
                     </li>
 
                     <li>
@@ -55,40 +56,6 @@
 
                 <br>
 
-                <!-- start skills -->
-                {{-- <h4>مهارت ها</h4>
-                <ul class="list-unstyled user_data">
-                    <li>
-                        <p>برنامه کاربردی وب</p>
-                        <div class="progress progress_sm">
-                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"
-                                aria-valuenow="49" style="width: 50%;"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <p>طراحی وبسایت</p>
-                        <div class="progress progress_sm">
-                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="70"
-                                aria-valuenow="69" style="width: 70%;"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <p>اتوماسیون و تست</p>
-                        <div class="progress progress_sm">
-                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="30"
-                                aria-valuenow="29" style="width: 30%;"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <p>UI / UX</p>
-                        <div class="progress progress_sm">
-                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"
-                                aria-valuenow="49" style="width: 50%;"></div>
-                        </div>
-                    </li>
-                </ul> --}}
-                <!-- end of skills -->
-
             </div>
             <div class="col-md-9 col-sm-9 col-xs-12">
 
@@ -108,7 +75,7 @@
                             <ul class="messages">
                                 <li>
                                     <div class="message_wrapper">
-                                        <p class="message">{{$hotel->features_ar}}</p>
+                                        <p class="message">{{$hotel->features_ar}} </p>
                                     </div>
                                 </li>
                                 <li>
@@ -143,7 +110,7 @@
                                 @foreach ($hotel->appartment as $item)
                                 <tr>
                                     <td>{{$index ++}}</td>
-                                    <td>{{$item->name_ar}} - {{$item->name_en}}</td>
+                                    <td>{{$item->name_ar}} - {{$item->name_ar}}</td>
                                     <td>{{$item->number_of_rooms}}</td>
                                     {{-- <td>{{$item->type_appartment->name_ar}} - {{$item->type_appartment->name_en}}
                                     </td> --}}
@@ -193,7 +160,7 @@
                                                                 <span>اسم الشقة الفندقية</span>
                                                             </span>
                                                             <span class="message">
-                                                                {{$item->name_ar}} - {{$item->name_en}}
+                                                                {{$hotel->name_ar}} - {{$hotel->name_en}}
                                                             </span>
                                                         </a>
                                                     </li>
@@ -227,7 +194,7 @@
                                                                 <span>الطابق</span>
                                                             </span>
                                                             <span class="message">
-                                                                @if ($item->floor_ar && $item->floor_en)
+                                                                @if ($item->floor_ar || $item->floor_en)
                                                                     {{$item->floor_ar}} -{{$item->floor_en}}
                                                                 @else
                                                                     لا يوجد
@@ -255,8 +222,8 @@
                                                                 <span>المميزات</span>
                                                             </span>
                                                             <span class="message">
-                                                                @if ($item->features_ar && $item->features_en)
-                                                                    {{$item->features_ar}} - {{$item->features_en}}
+                                                                @if ($item->features_ar || $item->features_en)
+                                                                    {{$hotel->features_ar}} - {{$hotel->features_en}}
                                                                 @else
                                                                     لا يوجد
                                                                 @endif

@@ -21,15 +21,23 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api'], func
     Route::post('login', 'AuthController@login'); // == Login ==
     Route::post('register', 'AuthController@register'); // == Login ==
 
-    Route::group(
-        [
-            'prefix' => LaravelLocalization::setLocale(),
-            'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
-        ],
-        function () {
-            // == This routes user must be logged in ==
-            Route::group(['middleware' => ['auth:api']], function () {
-            });
-        }
-    );
+    Route::get('hotels', 'HotelController@get_hotel'); // == get All Hotels ==
+    Route::get('hotels/top', 'HotelController@get_all_hotel_appartment'); // == get Top 3  Hotels ==
+
+    Route::get('hotels/{id}/appartments', 'HotelController@get_hotel_appartments_by_id'); // == get All Appartments by hotel ID ==
+    Route::get('appartment/{id}', 'HotelController@get_appartments_by_id'); // == get one Appartment by appartment ID ==
+
+
+
+    // Route::group(
+    //     [
+    //         'prefix' => LaravelLocalization::setLocale(),
+    //         'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
+    //     ],
+    //     function () {
+    //         // == This routes user must be logged in ==
+    //         Route::group(['middleware' => ['auth:api']], function () {
+    //         });
+    //     }
+    // );
 });

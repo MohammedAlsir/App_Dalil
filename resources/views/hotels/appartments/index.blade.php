@@ -115,7 +115,7 @@
                                                                 <span>الطابق</span>
                                                             </span>
                                                             <span class="message">
-                                                                @if ($item->floor_ar && $item->floor_en)
+                                                                @if ($item->floor_ar || $item->floor_en)
                                                                     {{$item->floor_ar}} -{{$item->floor_en}}
                                                                 @else
                                                                     لا يوجد
@@ -143,7 +143,7 @@
                                                                 <span>المميزات</span>
                                                             </span>
                                                             <span class="message">
-                                                                @if ($item->features_ar && $item->features_en)
+                                                                @if ($item->features_ar || $item->features_en)
                                                                     {{$item->features_ar}} - {{$item->features_en}}
                                                                 @else
                                                                     لا يوجد

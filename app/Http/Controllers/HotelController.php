@@ -121,6 +121,14 @@ class HotelController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $hotel =  Hotel::find($id);
+        if ($hotel->appartment->count() > 0) {
+            toastr()->error('هذا الفندق يحتوي على شقق قم بحذف الشقق اولا', 'خطأ');
+            return redirect()->route('hotels.index');
+        } else {
+            $hotel->delete();
+            toastr()->info('تم حذف الفندق ', 'نجاح');
+            return redirect()->route('hotels.index');
+        }
     }
 }
