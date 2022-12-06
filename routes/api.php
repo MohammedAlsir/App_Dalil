@@ -22,10 +22,16 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api'], func
     Route::post('register', 'AuthController@register'); // == Login ==
 
     Route::get('hotels', 'HotelController@get_hotel'); // == get All Hotels ==
-    Route::get('hotels/top', 'HotelController@get_all_hotel_appartment'); // == get Top 3  Hotels ==
+    Route::get('hotels/top', 'HotelController@get_top_hotel'); // == get Top 3  Hotels ==
 
     Route::get('hotels/{id}/appartments', 'HotelController@get_hotel_appartments_by_id'); // == get All Appartments by hotel ID ==
     Route::get('appartment/{id}', 'HotelController@get_appartments_by_id'); // == get one Appartment by appartment ID ==
+
+    // For Authentication
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::get('profile', 'AuthController@get_profile');
+        Route::post('profile', 'AuthController@edit_profile');
+    });
 
 
 

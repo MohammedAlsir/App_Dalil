@@ -20,7 +20,7 @@
 						},
 						{
 							"key": "email",
-							"value": "m7md@gmail.com",
+							"value": "mmd@gmail.com",
 							"type": "default"
 						},
 						{
@@ -70,7 +70,8 @@
 						{
 							"key": "name",
 							"value": "Nohammed",
-							"type": "default"
+							"type": "default",
+							"disabled": true
 						},
 						{
 							"key": "email",
@@ -79,18 +80,20 @@
 						},
 						{
 							"key": "password",
-							"value": "12345678",
+							"value": "123456788",
 							"type": "default"
 						},
 						{
 							"key": "password_confirmation",
 							"value": "12345678",
-							"type": "default"
+							"type": "default",
+							"disabled": true
 						},
 						{
 							"key": "phone",
 							"value": "0119053992",
-							"type": "default"
+							"type": "default",
+							"disabled": true
 						}
 					]
 				},
@@ -236,6 +239,130 @@
 						"v1",
 						"appartment",
 						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show Profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiYThjYjkyYjFlMjYwMmVlZDA4Y2M5OGI0NWEyODk2ODZhY2M3ZDZhNmI4N2QwYjVjZWJhZDBhYTFlNWUxNDVlNzliN2FkYTE3M2U5MmFhMGQiLCJpYXQiOjE2NzAzMzY0MzguNDY5Mzk3LCJuYmYiOjE2NzAzMzY0MzguNDY5NDAzLCJleHAiOjE3MDE4NzI0MzguMzc1NjQ3LCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.1HO5PyFpRQtaG8d903SKm-MO7PsQdDlDEb5D9mgUfd36XnlDh_Cso-XA6MWwnWOK2zeifQJU1ImvHdeZFxhocEqw2PkaQ7Yp19DA_XqpcAQMxY_P2y2bxaxC6mnmsVK6hg88C7ngSRCi9irLw4YaKfSrJaC4u-WTwA3b1gRPx7K0fFALyunIuFHoJiltY3YuFmWbZHPD9Lvu2zcaFObtsfqsHzihSnHDKo90NOsnrzgIOazAUUr6NlMS-aAj4sGQL031HZSHBry0M8HZdmoEFISUUeXCy7Tx-NvuHMsjIX0RR-jBTqKIHcnLffz78y7-t24Tc0UT0Gp9YRh07jDKZB3FL4wWLSfSpt1F79eVDwV_MxHX2JC4MBTwCst7VDQpghHZlEfCYQUOnbRM1pksrI09iXufIrncbumwVDcIJHwSiA_DUf7-QrkMpN4jJg3JRGaLF9oamrxbmhIhwndTLmqy1E6J8OpLhtPyDSF4jR_u7IaDNhGuPbZGwaa9OI37oOY_7ygohHOZs4O4WaAQtS1apeErp2pu7Xf5piiD2tDh8yriZXQy26v_rdeYnM5kR8xHG4MLrkJ6ZzvlfUK55J4l8Bv_DtDj5z9bZBR13XGZDRzsV2sldylTFbrmxVsIkxyMrnXylU82JyIWUFx-FQoU9SmjEPCrY5WC1LmaPOs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "ar",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/profile",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Profile    ===>this is  url show img http://127.0.0.1:8000/uploads/users/16703530083258.jpg",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiYThjYjkyYjFlMjYwMmVlZDA4Y2M5OGI0NWEyODk2ODZhY2M3ZDZhNmI4N2QwYjVjZWJhZDBhYTFlNWUxNDVlNzliN2FkYTE3M2U5MmFhMGQiLCJpYXQiOjE2NzAzMzY0MzguNDY5Mzk3LCJuYmYiOjE2NzAzMzY0MzguNDY5NDAzLCJleHAiOjE3MDE4NzI0MzguMzc1NjQ3LCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.1HO5PyFpRQtaG8d903SKm-MO7PsQdDlDEb5D9mgUfd36XnlDh_Cso-XA6MWwnWOK2zeifQJU1ImvHdeZFxhocEqw2PkaQ7Yp19DA_XqpcAQMxY_P2y2bxaxC6mnmsVK6hg88C7ngSRCi9irLw4YaKfSrJaC4u-WTwA3b1gRPx7K0fFALyunIuFHoJiltY3YuFmWbZHPD9Lvu2zcaFObtsfqsHzihSnHDKo90NOsnrzgIOazAUUr6NlMS-aAj4sGQL031HZSHBry0M8HZdmoEFISUUeXCy7Tx-NvuHMsjIX0RR-jBTqKIHcnLffz78y7-t24Tc0UT0Gp9YRh07jDKZB3FL4wWLSfSpt1F79eVDwV_MxHX2JC4MBTwCst7VDQpghHZlEfCYQUOnbRM1pksrI09iXufIrncbumwVDcIJHwSiA_DUf7-QrkMpN4jJg3JRGaLF9oamrxbmhIhwndTLmqy1E6J8OpLhtPyDSF4jR_u7IaDNhGuPbZGwaa9OI37oOY_7ygohHOZs4O4WaAQtS1apeErp2pu7Xf5piiD2tDh8yriZXQy26v_rdeYnM5kR8xHG4MLrkJ6ZzvlfUK55J4l8Bv_DtDj5z9bZBR13XGZDRzsV2sldylTFbrmxVsIkxyMrnXylU82JyIWUFx-FQoU9SmjEPCrY5WC1LmaPOs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "ar",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "photo",
+							"type": "file",
+							"src": "/F:/BBM/s.jpg"
+						},
+						{
+							"key": "name",
+							"value": "ali",
+							"type": "default"
+						},
+						{
+							"key": "email",
+							"value": "m7md@gmail.com",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "1234567890",
+							"type": "default"
+						},
+						{
+							"key": "password",
+							"value": "123456789",
+							"type": "default"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "123456789",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/profile",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"profile"
+					],
+					"query": [
+						{
+							"key": "photo",
+							"value": "klk",
+							"disabled": true
+						}
 					]
 				}
 			},

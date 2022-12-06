@@ -32,14 +32,14 @@ class HotelController extends Controller
         return $this->returnData('hotels', $hotels);
     }
 
-    // get_hotel_appartments_by_id
+    // get hotel appartments by id
     public function get_hotel_appartments_by_id($id)
     {
         if (Hotel::find($id)) {
             $appartments = HotelAppartment::where('hotel_id', $id)->orderBy('id', 'DESC')->get();
             return $this->returnData('appartments', $appartments);
         } else {
-            return $this->returnMessage('error', 'عفوا هذا الفندق غير موجود', 200);
+            return $this->returnMessage('error', 'عفوا هذا الفندق غير موجود', 'Sorry, this hotel does not exist', 200);
         }
     }
 
@@ -50,7 +50,7 @@ class HotelController extends Controller
         if ($appartment) {
             return $this->returnData('appartment', $appartment);
         } else {
-            return $this->returnMessage('error', 'عفوا هذه الشقة غير موجودة', 200);
+            return $this->returnMessage('error', 'عفوا هذه الشقة غير موجودة', 'Sorry, this apartment does not exist', 200);
         }
     }
 }

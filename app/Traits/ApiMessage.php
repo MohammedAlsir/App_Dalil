@@ -12,11 +12,12 @@ trait ApiMessage
         == $status_code   =>    رقم حالة الخطأ
         ==
      */
-    public function returnMessage($status, $message, $status_code)
+    public function returnMessage($status, $message_ar, $message_en, $status_code)
     {
         return response()->json([
             'status'      => $status,
-            'message'     => $message,
+            'message_ar'     => $message_ar,
+            'message_en'     => $message_en,
         ], $status_code);
     }
 
