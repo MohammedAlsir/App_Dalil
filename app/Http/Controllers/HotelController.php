@@ -16,7 +16,7 @@ class HotelController extends Controller
     {
         $hotels = Hotel::orderBy('id', 'DESC')->get();
         $index = 1;
-        return view('Hotels.index', compact('hotels', 'index'));
+        return view('hotels.index', compact('hotels', 'index'));
     }
 
     /**
@@ -26,7 +26,7 @@ class HotelController extends Controller
      */
     public function create()
     {
-        return view('Hotels.create');
+        return view('hotels.create');
     }
 
     /**
@@ -68,7 +68,7 @@ class HotelController extends Controller
     {
         $hotel = Hotel::find($id);
         $index = 1;
-        return view('Hotels.show', compact('hotel', 'index'));
+        return view('hotels.show', compact('hotel', 'index'));
     }
 
     /**
@@ -80,7 +80,7 @@ class HotelController extends Controller
     public function edit($id)
     {
         $hotel = Hotel::find($id);
-        return view('Hotels.edit', compact('hotel'));
+        return view('hotels.edit', compact('hotel'));
     }
 
     /**
