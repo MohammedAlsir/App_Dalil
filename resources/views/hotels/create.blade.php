@@ -69,6 +69,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="location">الموقع
                         <span class="required">
+                            {{-- <span style="color: red">موقع الفندق بالتحديد</span> --}}
                             <a target="_blank" style="color: red" href="https://www.google.com/maps">عرض خرائط قوقل</a>
                         </span>
                     </label>
