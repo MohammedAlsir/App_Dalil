@@ -32,7 +32,7 @@
         </div>
         <div class="x_content">
             <br>
-            <form  method="POST" action="{{route('hotels.update',$hotel->id)}}" id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" >
+            <form  method="POST" action="{{route('hotels.update',$hotel->id)}}" id="demo-form2" data-parsley-validate="" enctype="multipart/form-data" class="form-horizontal form-label-left" >
                 @csrf
                 @method('put')
 
@@ -67,18 +67,24 @@
                 </div>
 
 
-                <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="location">الموقع
-                        <span class="required">
-                            {{-- <span style="color: red">موقع الفندق بالتحديد</span> --}}
-                            <a target="_blank" style="color: red" href="https://www.google.com/maps">عرض خرائط قوقل</a>
-                        </span>
-                    </label>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input value="{{$hotel->location}}" type="text" id="location" name="location"
-                            class="form-control col-md-7 col-xs-12">
+                @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="location_{{$localeCode}}">الموقع
+                        <span class="required"><i class="flag">{!! @Helper::languageName($localeCode) !!}</i></span>
+
+                            <span class="required">
+                                <span style="color: red">موقع الفندق بالتحديد</span>
+                                {{-- <a target="_blank" style="color: red" href="https://www.google.com/maps">عرض خرائط قوقل</a> --}}
+                            </span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="location_{{$localeCode}}" value="{!!$hotel->{'location_'.$localeCode}!!}" name="location_{{$localeCode}}"
+                                class="form-control col-md-7 col-xs-12">
+                        </div>
                     </div>
-                </div>
+
+                @endforeach
 
                 @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
 
@@ -92,6 +98,28 @@
                         </div>
                     </div>
                 @endforeach
+
+
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >الصور </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{-- <form action=""> --}}
+
+                        @foreach ($hotel->images as $item)
+                            <img style="width: 150px; height: 150px; margin: 1px" src="{{ asset('uploads/hotels/'.$item->photo) }}" alt="" class="form-control col-md-7 col-xs-12">
+                        @endforeach
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >الصور </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="file" multiple  name="photo[]"
+                            class="form-control col-md-7 col-xs-12"></input>
+                    <p>الحد الاقصى للصور 3 صور </p>
+
+                    </div>
+                </div>
 
 
                 <div class="ln_solid"></div>

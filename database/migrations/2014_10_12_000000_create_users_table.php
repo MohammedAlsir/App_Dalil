@@ -22,7 +22,9 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('photo')->nullable();
             $table->string('status')->default(1);
-
+            // For User
+            $table->string('identification')->nullable();
+            $table->string('identification_photo')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

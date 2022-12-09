@@ -31,6 +31,9 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api'], func
     Route::group(['middleware' => 'auth:api'], function () {
         Route::get('profile', 'AuthController@get_profile');
         Route::post('profile', 'AuthController@edit_profile');
+        // Like
+        Route::post('like/hotel/{hotel_id}', 'HotelController@add_like_for_hotel');
+        Route::post('like/appartment/{appartments_id}', 'HotelController@add_like_for_appartment');
     });
 
 

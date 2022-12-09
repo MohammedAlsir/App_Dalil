@@ -27,6 +27,8 @@
                 <ul class="nav side-menu">
                     <li><a href="{{route('home')}}"><i class="fa fa-home"></i>الصفحة الرئيسية</a></li>
 
+                    <li><a href="{{route('city.index')}}"><i class="fa fa-home"></i> الولايات و المدن</a></li>
+
                     <!-- Hotels -->
                     <li><a><i class="fa fa-cubes"></i>الفنادق<span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">

@@ -13,4 +13,8 @@ class State extends Model
     // use HasTranslations;
 
     // public $translatable = ['name'];
+    public function cities()
+    {
+        return $this->hasMany(City::class);
+    }
 }

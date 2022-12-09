@@ -28,7 +28,7 @@ return new class extends Migration
             $table->longText('features_en')->nullable();
             $table->foreignId('hotel_id')->constrained('hotels')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('type_appartment_id')->constrained('type_appartments')->onDelete('cascade')->onUpdate('cascade');
-
+            // $table->integer('likes')->default(0);
             $table->timestamps();
         });
     }

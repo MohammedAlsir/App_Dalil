@@ -32,4 +32,5 @@ Route::namespace('App\Http\Controllers')->middleware(['auth'])->group(function (
 
     Route::resource('hotels', 'HotelController');
     Route::resource('hotel/appartment', 'HotelAppartmentController');
+    Route::resource('state/city', 'StateCityController');
 });

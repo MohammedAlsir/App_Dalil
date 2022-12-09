@@ -16,6 +16,8 @@ class AuthController extends Controller
 {
     use ApiMessage;
     private $uploadPath = "uploads/users/";
+    private $uploadPathIdentificationPhoto = "uploads/identification/";
+
 
     /*
         == Login function ==
@@ -88,6 +90,9 @@ class AuthController extends Controller
                 'password'  => 'string|min:8|confirmed',
                 'phone'     => 'min:10|max:10',
                 'photo'     => '',
+                'identification' => '',
+                'identification_photo' => '',
+
             ]
         );
 
@@ -102,8 +107,8 @@ class AuthController extends Controller
             $user->password = $request->password;
         if ($request->phone)
             $user->phone = $request->phone;
-        if ($request->photo)
-            $user->photo = $request->photo;
+        if ($request->identification)
+            $user->identification = $request->identification;
         // For Photo
         $formFileName = "photo";
         $fileFinalName = "";
@@ -124,6 +129,27 @@ class AuthController extends Controller
             $user->photo = $fileFinalName;
         }
         // For Photo
+
+        // For identification_Photo
+        $form_identification_photo = "identification_photo";
+        $file_identification_photo = "";
+        if ($request->$form_identification_photo != "") {
+            // Delete file if there is a new one
+            if ($user->$form_identification_photo) {
+                File::delete($this->uploadPathIdentificationPhoto . User::find(Auth::user()->id)->identification_photo);
+            }
+            $file_identification_photo = time() . rand(
+                1111,
+                9999
+            ) . '.' . $request->file($form_identification_photo)->getClientOriginalExtension();
+            $path = $this->uploadPathIdentificationPhoto;
+            $request->file($form_identification_photo)->move($path, $file_identification_photo);
+        }
+
+        if ($file_identification_photo != "") {
+            $user->identification_photo = $file_identification_photo;
+        }
+        // For identification_Photo
         $user->save();
         // == return user data with token ==
         return $this->returnData('user', $user);

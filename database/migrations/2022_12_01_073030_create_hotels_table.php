@@ -23,7 +23,9 @@ return new class extends Migration
             $table->integer('stars');
             $table->longText('features_ar')->nullable();
             $table->longText('features_en')->nullable();
-            $table->longText('location')->nullable();
+            $table->longText('location_ar')->nullable();
+            $table->longText('location_en')->nullable();
+            // $table->integer('likes')->default(0);
             $table->timestamps();
         });
     }

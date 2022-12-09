@@ -41,9 +41,8 @@
                         @endfor
                     </li>
 
-                    <li>
-                        {{$hotel->location}}
-                    </li>
+                    <li> {{$hotel->location_ar}}</li>
+                    <li> {{$hotel->location_en}}</li>
 
                     {{-- <li class="m-top-xs">
                         <i class="fa fa-external-link user-profile-icon"></i>

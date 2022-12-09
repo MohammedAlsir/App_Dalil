@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Hotel;
 use App\Models\HotelAppartment;
+use App\Models\Like;
 use App\Traits\ApiMessage;
 use App\Traits\Oprations;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HotelController extends Controller
 {
@@ -18,6 +20,7 @@ class HotelController extends Controller
         $hotels = Hotel::orderBy('id', 'DESC')->get();
         foreach ($hotels as $item) {
             $item->city->state;
+            $item->setAttribute('likes', $item->like->count());
         }
         return $this->returnData('hotels', $hotels);
     }
@@ -28,6 +31,7 @@ class HotelController extends Controller
         $hotels = Hotel::orderBy('stars', 'DESC')->take(3)->get();
         foreach ($hotels as $item) {
             $item->city->state;
+            $item->setAttribute('likes', $item->like->count());
         }
         return $this->returnData('hotels', $hotels);
     }
@@ -51,6 +55,44 @@ class HotelController extends Controller
             return $this->returnData('appartment', $appartment);
         } else {
             return $this->returnMessage('error', 'عفوا هذه الشقة غير موجودة', 'Sorry, this apartment does not exist', 200);
+        }
+    }
+
+    // Add Like For Hotel
+    public function add_like_for_hotel($hotel_id)
+    {
+        if (Hotel::find($hotel_id)) {
+            if (Like::where('hotel_id', $hotel_id)->where('user_id', Auth::user()->id)->first()) {
+                return $this->returnMessage('error', 'عفوا انت معجب فعلا بهذا الفندق', 'Sorry, you really like this hotel', 200);
+            } else {
+                $like = new Like();
+                $like->user_id = Auth::user()->id;
+                $like->hotel_id = $hotel_id;
+                $like->save();
+            }
+
+            return $this->returnMessage(true, 'اعجبني', 'like', 200);
+        } else {
+            return $this->returnMessage('error', 'عفوا هذا الفندق غير موجود', 'Sorry, this hotel does not exist', 200);
+        }
+    }
+
+    // Add Like For appartment
+    public function add_like_for_appartment($appartment_id)
+    {
+        if (HotelAppartment::find($appartment_id)) {
+            if (Like::where('appartment_id', $appartment_id)->where('user_id', Auth::user()->id)->first()) {
+                return $this->returnMessage('error', 'عفوا انت معجب فعلا بهذه الشقة', 'Sorry, you really like this appartment', 200);
+            } else {
+                $like = new Like();
+                $like->user_id = Auth::user()->id;
+                $like->appartment_id = $appartment_id;
+                $like->save();
+            }
+
+            return $this->returnMessage(true, 'اعجبني', 'like', 200);
+        } else {
+            return $this->returnMessage('error', 'عفوا هذه الشقة غير موجود', 'Sorry, this Appartment does not exist', 200);
         }
     }
 }

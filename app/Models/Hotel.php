@@ -24,6 +24,16 @@ class Hotel extends Model
         return $this->hasMany(HotelAppartment::class);
     }
 
+    public function like()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function images()
+    {
+        return $this->hasMany(Image::class);
+    }
+
     // public function getNameAttribute($value)
     // {
     //     // if (\Request::route()->getPrefix() === 'api/v1')
