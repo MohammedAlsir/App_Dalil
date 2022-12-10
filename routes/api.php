@@ -27,6 +27,12 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api'], func
     Route::get('hotels/{id}/appartments', 'HotelController@get_hotel_appartments_by_id'); // == get All Appartments by hotel ID ==
     Route::get('appartment/{id}', 'HotelController@get_appartments_by_id'); // == get one Appartment by appartment ID ==
 
+    // Get Public Data
+    Route::get('states', 'GetController@get_state'); // == get all State ==
+    Route::get('state/{id}/cities', 'GetController@get_cities'); // == get all cities by state id ==
+    Route::get('state/city/{id}/hotels', 'GetController@get_hotels'); // == get all hotels by city id ==
+
+
     // For Authentication
     Route::group(['middleware' => 'auth:api'], function () {
         Route::get('profile', 'AuthController@get_profile');

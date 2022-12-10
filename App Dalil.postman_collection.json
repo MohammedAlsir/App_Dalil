@@ -478,6 +478,155 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Get All State",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZmM1NmViNDg0NTYyZWI2NmRiNTNjYjFiMmE2YzQ3Y2I4ODYwMzliZjZiZTZhNWI3MWJlMGNmYjNhY2Y5YWFhYjM1ZjkyNDI4NzdjMDhjNjMiLCJpYXQiOjE2NzA1MTc1NzMuMTg1NTUzLCJuYmYiOjE2NzA1MTc1NzMuMTg1NTY4LCJleHAiOjE3MDIwNTM1NzMuMDc3NDI5LCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.kP0vFuyyNef6IL2QGTvrqLmdGxCeyaj_imLQ8LkKbLf-LDbgmpRFbYvujbUUFZ2-EqoJfEKA7nRLyrDsJZrbi8bQvk-_pytMbcHUtPOOnED3X2LEVLQcE6aDBj901b_sPtKpOp9RLIVQi4_9Zz2RtgxTP-XWKNBaB3YezjtUAo61ga49-e3lJ2JO40CaBvDwplN7T6xgPFvnaPkcX5gWZax75NGjQh8OxQOseL5A5yyCfn6l81LKcVIGKDvhxoN6thfBMjgSvGiSMG1sRcjaNJXsuJHBZSEjDd3_BGc_q6Sfzo7dWJ-X52kX7z3pSs-RgEdc11C_EulB5vKpWzF_b54b8m4qKV4tMi5L6lKXnpts5K8Uys7GP_6ToagnTXN1zOBUn3_ctaQHR2TaKrYdlUO1f83FnRIA5i9jYHw3Jbfdc5Uw-VJW_5OxH5elctSc6AzJMzJSIAh2xCtD0tvVCnx3nA8rNKSt9hCQgvoLR0d8CCU1ho3jslXJ5qAO-Y0AtdL1EFmTgPvm4Zf83jA2-H7mE5UMa2Sc3oTN0jr2IB0CP3F4xkxY5ZMGpgESL1j3IFWvbQbs99YePI8z5bKkzDPhJjPLRocRwycywmVuGXt4eI-Mr__P_R8iVMs0LLd_N2Ng2OG2g_iRVWnFlk9gDm4gl7o1sTPRNxSWZRu6HUc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "ar",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/states",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"states"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All cities by satate id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZmM1NmViNDg0NTYyZWI2NmRiNTNjYjFiMmE2YzQ3Y2I4ODYwMzliZjZiZTZhNWI3MWJlMGNmYjNhY2Y5YWFhYjM1ZjkyNDI4NzdjMDhjNjMiLCJpYXQiOjE2NzA1MTc1NzMuMTg1NTUzLCJuYmYiOjE2NzA1MTc1NzMuMTg1NTY4LCJleHAiOjE3MDIwNTM1NzMuMDc3NDI5LCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.kP0vFuyyNef6IL2QGTvrqLmdGxCeyaj_imLQ8LkKbLf-LDbgmpRFbYvujbUUFZ2-EqoJfEKA7nRLyrDsJZrbi8bQvk-_pytMbcHUtPOOnED3X2LEVLQcE6aDBj901b_sPtKpOp9RLIVQi4_9Zz2RtgxTP-XWKNBaB3YezjtUAo61ga49-e3lJ2JO40CaBvDwplN7T6xgPFvnaPkcX5gWZax75NGjQh8OxQOseL5A5yyCfn6l81LKcVIGKDvhxoN6thfBMjgSvGiSMG1sRcjaNJXsuJHBZSEjDd3_BGc_q6Sfzo7dWJ-X52kX7z3pSs-RgEdc11C_EulB5vKpWzF_b54b8m4qKV4tMi5L6lKXnpts5K8Uys7GP_6ToagnTXN1zOBUn3_ctaQHR2TaKrYdlUO1f83FnRIA5i9jYHw3Jbfdc5Uw-VJW_5OxH5elctSc6AzJMzJSIAh2xCtD0tvVCnx3nA8rNKSt9hCQgvoLR0d8CCU1ho3jslXJ5qAO-Y0AtdL1EFmTgPvm4Zf83jA2-H7mE5UMa2Sc3oTN0jr2IB0CP3F4xkxY5ZMGpgESL1j3IFWvbQbs99YePI8z5bKkzDPhJjPLRocRwycywmVuGXt4eI-Mr__P_R8iVMs0LLd_N2Ng2OG2g_iRVWnFlk9gDm4gl7o1sTPRNxSWZRu6HUc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "ar",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/state/1/cities",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"state",
+						"1",
+						"cities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All hotels by city id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZmM1NmViNDg0NTYyZWI2NmRiNTNjYjFiMmE2YzQ3Y2I4ODYwMzliZjZiZTZhNWI3MWJlMGNmYjNhY2Y5YWFhYjM1ZjkyNDI4NzdjMDhjNjMiLCJpYXQiOjE2NzA1MTc1NzMuMTg1NTUzLCJuYmYiOjE2NzA1MTc1NzMuMTg1NTY4LCJleHAiOjE3MDIwNTM1NzMuMDc3NDI5LCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.kP0vFuyyNef6IL2QGTvrqLmdGxCeyaj_imLQ8LkKbLf-LDbgmpRFbYvujbUUFZ2-EqoJfEKA7nRLyrDsJZrbi8bQvk-_pytMbcHUtPOOnED3X2LEVLQcE6aDBj901b_sPtKpOp9RLIVQi4_9Zz2RtgxTP-XWKNBaB3YezjtUAo61ga49-e3lJ2JO40CaBvDwplN7T6xgPFvnaPkcX5gWZax75NGjQh8OxQOseL5A5yyCfn6l81LKcVIGKDvhxoN6thfBMjgSvGiSMG1sRcjaNJXsuJHBZSEjDd3_BGc_q6Sfzo7dWJ-X52kX7z3pSs-RgEdc11C_EulB5vKpWzF_b54b8m4qKV4tMi5L6lKXnpts5K8Uys7GP_6ToagnTXN1zOBUn3_ctaQHR2TaKrYdlUO1f83FnRIA5i9jYHw3Jbfdc5Uw-VJW_5OxH5elctSc6AzJMzJSIAh2xCtD0tvVCnx3nA8rNKSt9hCQgvoLR0d8CCU1ho3jslXJ5qAO-Y0AtdL1EFmTgPvm4Zf83jA2-H7mE5UMa2Sc3oTN0jr2IB0CP3F4xkxY5ZMGpgESL1j3IFWvbQbs99YePI8z5bKkzDPhJjPLRocRwycywmVuGXt4eI-Mr__P_R8iVMs0LLd_N2Ng2OG2g_iRVWnFlk9gDm4gl7o1sTPRNxSWZRu6HUc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "ar",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/state/city/2/hotels",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"state",
+						"city",
+						"2",
+						"hotels"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"auth": {

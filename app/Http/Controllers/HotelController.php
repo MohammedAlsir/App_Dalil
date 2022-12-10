@@ -47,8 +47,11 @@ class HotelController extends Controller
             'state' => 'required',
             'city' => 'required',
             'stars' => 'required',
-            // 'photo' => 'image',
+            'photo' => 'max:3', // checks length of array
+            'photo.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
+        ], [
+            'photo.max' => 'عدد الصور اكثر من العدد المحدد'
         ]);
         $hotel = new Hotel();
         $hotel->name_ar = $request->name_ar;
@@ -63,20 +66,20 @@ class HotelController extends Controller
         $hotel->save();
 
         // For Photo
-        foreach ($request->file('photo') as $imagefile) {
-            $image = new Image();
-            $fileFinalName = time() . rand(
-                1111,
-                9999
-            ) . '.' . $imagefile->file('photo')->getClientOriginalExtension();
-            $path = $this->uploadPath;
-            $imagefile->file('photo')->move($path, $fileFinalName);
-            $image->photo = $fileFinalName;
-            $image->save();
+        if ($request->hasFile('photo')) {
+            foreach ($request->file('photo') as $index => $imagefile) {
+                $image = new Image();
+                $fileFinalName = time() . rand(
+                    1111,
+                    9999
+                ) . '.' . $request->file('photo')[$index]->getClientOriginalExtension();
+                $path = $this->uploadPath;
+                $request->file('photo')[$index]->move($path, $fileFinalName);
+                $image->photo = $fileFinalName;
+                $image->hotel_id = $hotel->id;
+                $image->save();
+            }
         }
-
-
-
         // For Photo
 
 
@@ -146,9 +149,11 @@ class HotelController extends Controller
         // For Photo
         $image_count = Image::where('hotel_id', $id)->count();
         if ($image_count >= 3) {
-            toastr()->error('الفندق لدية 3 صور سابقة لايمكن اضافة المزيد', 'خطأ');
+            toastr()->error('الفندق لدية 3 صور سابقة لايمكن اضافة المزيد احذف بعض الصور السابقة اولا', 'خطأ');
             return redirect()->back();
-        } else {
+        }
+
+        if ($request->hasFile('photo')) {
             foreach ($request->file('photo') as $index => $imagefile) {
                 $image = new Image();
                 $fileFinalName = time() . rand(
@@ -165,7 +170,8 @@ class HotelController extends Controller
 
 
         toastr()->info('تم تعديل بيانات الفندق ', 'نجاح');
-        return redirect()->route('hotels.index');
+        // return redirect()->route('hotels.index');
+        return redirect()->back();
     }
 
     /**
@@ -185,5 +191,13 @@ class HotelController extends Controller
             toastr()->info('تم حذف الفندق ', 'نجاح');
             return redirect()->route('hotels.index');
         }
+    }
+
+    // Delete image by ID
+    public function delete_image($id)
+    {
+        Image::find($id)->delete();
+        toastr()->info('تم حذف الصورة ', 'نجاح');
+        return redirect()->back();
     }
 }

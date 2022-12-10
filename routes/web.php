@@ -31,6 +31,8 @@ Route::namespace('App\Http\Controllers')->middleware(['auth'])->group(function (
     Route::put('settings', 'SettingController@settings_edit')->name('settings_edit');
 
     Route::resource('hotels', 'HotelController');
+    // Delete image by ID
+    Route::delete('delete/image/{id}', 'HotelController@delete_image')->name('delete.image');
     Route::resource('hotel/appartment', 'HotelAppartmentController');
     Route::resource('state/city', 'StateCityController');
 });

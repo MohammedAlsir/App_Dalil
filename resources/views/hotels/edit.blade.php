@@ -102,31 +102,30 @@
 
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" >الصور </label>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="col-md-6 col-sm-6 col-xs-12" style="padding:0">
                             {{-- <form action=""> --}}
 
-                        @foreach ($hotel->images as $item)
-                            <img style="width: 150px; height: 150px; margin: 1px" src="{{ asset('uploads/hotels/'.$item->photo) }}" alt="" class="form-control col-md-7 col-xs-12">
-                        @endforeach
+                        @livewire('delete-image', ['id' => $hotel->id])
+
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >الصور </label>
+                    <label class="control-label col-md-3 col-sm-12 col-xs-12" >الصور </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <input type="file" multiple  name="photo[]"
                             class="form-control col-md-7 col-xs-12"></input>
-                    <p>الحد الاقصى للصور 3 صور </p>
+                        <p>الحد الاقصى للصور 3 صور </p>
 
                     </div>
                 </div>
 
 
-                <div class="ln_solid"></div>
+                <div class="ln_solid" style="margin-top:85px "></div>
                 <div class="form-group">
                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3 text-left">
                         {{-- <button type="submit" class="btn btn-primary">انصراف</button> --}}
-                        <button type="submit" class="btn btn-success">تعديل</button>
+                        <button form="demo-form2" type="submit" class="btn btn-success">تعديل</button>
                     </div>
                 </div>
 

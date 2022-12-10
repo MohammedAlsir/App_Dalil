@@ -101,7 +101,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" >الصور </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="file" multiple  name="photo"
+                        <input type="file" multiple  name="photo[]"
                             class="form-control col-md-7 col-xs-12"></input>
                     </div>
                 </div>
