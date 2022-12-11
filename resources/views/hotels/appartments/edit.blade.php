@@ -32,7 +32,7 @@
         </div>
         <div class="x_content">
             <br>
-            <form  method="POST" action="{{route('appartment.update',$appartment->id)}}" id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" >
+            <form  method="POST" action="{{route('appartment.update',$appartment->id)}}" id="demo-form2" data-parsley-validate="" enctype="multipart/form-data" class="form-horizontal form-label-left" >
                 @csrf
                 @method('put')
 
@@ -133,6 +133,28 @@
                             class="form-control col-md-7 col-xs-12">
                     </div>
                 </div>
+
+
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >الصور </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12" style="padding:0">
+                            {{-- <form action=""> --}}
+
+                        @livewire('delete-image', ['hotel_id' => 0 ,'appartment_id'=>$appartment->id])
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-12 col-xs-12" >الصور </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="file" multiple  name="photo[]"
+                            class="form-control col-md-7 col-xs-12"></input>
+                        <p>الحد الاقصى للصور 3 صور </p>
+
+                    </div>
+                </div>
+
 
 
                 <div class="ln_solid"></div>

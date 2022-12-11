@@ -30,7 +30,7 @@ class GetController extends Controller
         $hotels = Hotel::where('city_id', $city_id)->orderBy('id', 'DESC')->get();
         foreach ($hotels as $item) {
             $item->city->state;
-            $item->setAttribute('likes', $item->like->count());
+            // $item->setAttribute('likes', $item->like->count());
         }
         return $this->returnData('hotels', $hotels);
     }

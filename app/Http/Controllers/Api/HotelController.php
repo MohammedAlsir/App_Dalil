@@ -17,21 +17,40 @@ class HotelController extends Controller
     // عرض كل الفنادق الموجودة
     public function get_hotel()
     {
-        $hotels = Hotel::orderBy('id', 'DESC')->get();
+        $hotels = Hotel::with('images')->orderBy('id', 'DESC')->get();
         foreach ($hotels as $item) {
             $item->city->state;
-            $item->setAttribute('likes', $item->like->count());
         }
         return $this->returnData('hotels', $hotels);
+
+
+        // $hotels = Hotel::withCount('like')->orderBy('id', 'DESC')->get();
+        // $hotels = Hotel::orderBy('id', 'DESC')->get();
+        // foreach ($hotels as $item) {
+        //     // $item->city->state;
+        //     $item->liked->count();
+        //     // foreach ($item->like_2 as $status) {
+        //     //     if ($status->user_id == Auth::user()->id) {
+        //     // $item->setAttribute('liked', '');
+        //     // } else {
+        //     //     $item->setAttribute('sssss', "false");
+        //     // }
+        //     // }
+        // }
+        // return $this->returnData('hotels', $hotels);
+        // if (auth()->check())
+        //     return Auth::user()->name;
+        // else
+        //     return "false";
     }
 
     // Top 3 Hotels
     public function get_top_hotel()
     {
-        $hotels = Hotel::orderBy('stars', 'DESC')->take(3)->get();
+        $hotels = Hotel::with('images')->orderBy('stars', 'DESC')->take(3)->get();
         foreach ($hotels as $item) {
             $item->city->state;
-            $item->setAttribute('likes', $item->like->count());
+            // $item->setAttribute('likes', $item->like->count());
         }
         return $this->returnData('hotels', $hotels);
     }
@@ -40,7 +59,7 @@ class HotelController extends Controller
     public function get_hotel_appartments_by_id($id)
     {
         if (Hotel::find($id)) {
-            $appartments = HotelAppartment::where('hotel_id', $id)->orderBy('id', 'DESC')->get();
+            $appartments = HotelAppartment::with('images')->where('hotel_id', $id)->orderBy('id', 'DESC')->get();
             return $this->returnData('appartments', $appartments);
         } else {
             return $this->returnMessage('error', 'عفوا هذا الفندق غير موجود', 'Sorry, this hotel does not exist', 200);
@@ -50,7 +69,7 @@ class HotelController extends Controller
     // Get appartment by id
     public function get_appartments_by_id($id)
     {
-        $appartment = HotelAppartment::find($id);
+        $appartment = HotelAppartment::with('images')->find($id);
         if ($appartment) {
             return $this->returnData('appartment', $appartment);
         } else {

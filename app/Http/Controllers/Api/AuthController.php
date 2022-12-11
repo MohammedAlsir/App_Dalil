@@ -53,6 +53,7 @@ class AuthController extends Controller
                 'email'     => 'required|string|email|max:255|unique:users',
                 'password'  => 'required|string|min:8|confirmed',
                 'phone'     => 'required|min:10|max:10',
+
             ]
         );
         // == check data ==
@@ -89,9 +90,13 @@ class AuthController extends Controller
                 'email'     => 'string|email|max:255|unique:users,email,' . $user->id,
                 'password'  => 'string|min:8|confirmed',
                 'phone'     => 'min:10|max:10',
-                'photo'     => '',
+                // 'photo'     => '',
+                'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
                 'identification' => '',
-                'identification_photo' => '',
+                // 'identification_photo' => '',
+                'identification_photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
 
             ]
         );

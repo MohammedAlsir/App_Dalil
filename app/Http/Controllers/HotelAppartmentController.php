@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Hotel;
 use App\Models\HotelAppartment;
+use App\Models\Image;
 use App\Models\TypeAppartment;
 use Illuminate\Http\Request;
 
 class HotelAppartmentController extends Controller
 {
+    private $uploadPath = "uploads/hotels/appartments";
+
     /**
      * Display a listing of the resource.
      *
@@ -48,6 +51,10 @@ class HotelAppartmentController extends Controller
             'hotel' => 'required',
             'type' => 'required',
             'night_price' => 'required',
+            'photo' => 'max:3', // checks length of array
+            'photo.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ], [
+            'photo.max' => 'عدد الصور اكثر من العدد المحدد'
         ]);
         $hotel_appartment = new HotelAppartment();
         // Is Required
@@ -64,6 +71,23 @@ class HotelAppartmentController extends Controller
         $hotel_appartment->number_of_rooms = $request->number_of_rooms;
         $hotel_appartment->discount = $request->discount;
         $hotel_appartment->save();
+
+        // For Photo
+        if ($request->hasFile('photo')) {
+            foreach ($request->file('photo') as $index => $imagefile) {
+                $image = new Image();
+                $fileFinalName = time() . rand(
+                    1111,
+                    9999
+                ) . '.' . $request->file('photo')[$index]->getClientOriginalExtension();
+                $path = $this->uploadPath;
+                $request->file('photo')[$index]->move($path, $fileFinalName);
+                $image->photo = $fileFinalName;
+                $image->appartment_id = $hotel_appartment->id;
+                $image->save();
+            }
+        }
+        // For Photo
 
         toastr()->info('تم اضافة الشقة الفندقية ', 'نجاح');
         return redirect()->route('appartment.index');
@@ -109,6 +133,12 @@ class HotelAppartmentController extends Controller
             'hotel' => 'required',
             'type' => 'required',
             'night_price' => 'required',
+            'photo' => 'max:3', // checks length of array
+            'photo.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            // 'location_ar' => '',
+            // 'location_en' => ''
+        ], [
+            'photo.max' => 'عدد الصور اكثر من العدد المحدد'
         ]);
         $hotel_appartment =  HotelAppartment::find($id);
         // Is Required
@@ -126,8 +156,32 @@ class HotelAppartmentController extends Controller
         $hotel_appartment->discount = $request->discount;
         $hotel_appartment->save();
 
+        // For Photo
+        $image_count = Image::where('appartment_id', $id)->count();
+        if ($image_count >= 3) {
+            toastr()->error('الشقة لديها 3 صور سابقة لايمكن اضافة المزيد احذف بعض الصور السابقة اولا', 'خطأ');
+            return redirect()->back();
+        }
+
+        if ($request->hasFile('photo')) {
+            foreach ($request->file('photo') as $index => $imagefile) {
+                $image = new Image();
+                $fileFinalName = time() . rand(
+                    1111,
+                    9999
+                ) . '.' . $request->file('photo')[$index]->getClientOriginalExtension();
+                $path = $this->uploadPath;
+                $request->file('photo')[$index]->move($path, $fileFinalName);
+                $image->photo = $fileFinalName;
+                $image->appartment_id = $hotel_appartment->id;
+                $image->save();
+            }
+        }
+
+
         toastr()->info('تم تعديل بيانات الشقة الفندقية ', 'نجاح');
-        return redirect()->route('appartment.index');
+        // return redirect()->route('appartment.index');
+        return redirect()->back();
     }
 
     /**

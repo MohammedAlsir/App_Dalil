@@ -105,7 +105,9 @@
                     <div class="col-md-6 col-sm-6 col-xs-12" style="padding:0">
                             {{-- <form action=""> --}}
 
-                        @livewire('delete-image', ['id' => $hotel->id])
+                        {{-- @livewire('delete-image', ['id' => $hotel->id]) --}}
+                        @livewire('delete-image', ['hotel_id' => $hotel->id ,'appartment_id'=>0])
+
 
                     </div>
                 </div>

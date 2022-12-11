@@ -32,7 +32,7 @@
         </div>
         <div class="x_content">
             <br>
-            <form  method="POST" action="{{route('appartment.store')}}" id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" >
+            <form  method="POST" action="{{route('appartment.store')}}" id="demo-form2" data-parsley-validate="" enctype="multipart/form-data" class="form-horizontal form-label-left" >
                 @csrf
 
                 <div class="form-group">
@@ -130,6 +130,14 @@
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <input type="number" id="discount" name="discount"
                             class="form-control col-md-7 col-xs-12">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >الصور </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="file" multiple  name="photo[]"
+                            class="form-control col-md-7 col-xs-12"></input>
                     </div>
                 </div>
 

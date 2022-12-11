@@ -22,4 +22,9 @@ class HotelAppartment extends Model
     {
         return $this->belongsTo(TypeAppartment::class, 'type_appartment_id');
     }
+
+    public function images()
+    {
+        return $this->hasMany(Image::class, 'appartment_id');
+    }
 }

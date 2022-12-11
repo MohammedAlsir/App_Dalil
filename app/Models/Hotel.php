@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+
 // use Spatie\Translatable\HasTranslations;
 
 
@@ -29,9 +31,14 @@ class Hotel extends Model
         return $this->hasMany(Like::class);
     }
 
+    // public function liked()
+    // {
+    //     return $this->hasMany(Like::class)->where('user_id', Auth::user()->id);
+    // }
+
     public function images()
     {
-        return $this->hasMany(Image::class);
+        return $this->hasMany(Image::class, 'hotel_id');
     }
 
     // public function getNameAttribute($value)
