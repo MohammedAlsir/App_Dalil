@@ -40,6 +40,9 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api'], func
         // Like
         Route::post('like/hotel/{hotel_id}', 'HotelController@add_like_for_hotel');
         Route::post('like/appartment/{appartments_id}', 'HotelController@add_like_for_appartment');
+        // Apartment Request
+        Route::post('appartment/{id}/request', 'HotelController@appartment_request');
+        Route::post('appartment/{id}/pay', 'HotelController@appartment_pay');
     });
 
 

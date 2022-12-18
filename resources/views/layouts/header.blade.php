@@ -37,12 +37,15 @@
                         </ul>
                     </li>
 
-                     <li><a><i class="fa fa-cubes"></i>الشقق الفندقية<span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-cubes"></i>الشقق الفندقية<span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{route('appartment.index')}}">كل الشقق</a></li>
                             <li><a href="{{route('appartment.create')}}">إضافة شقة جديدة</a></li>
                         </ul>
                     </li>
+
+                    <li><a href="{{route('appartment_request')}}"><i class="fa fa-home"></i>طلبات الشقق الفندقية</a></li>
+
 
 
                     <!-- Hotels -->

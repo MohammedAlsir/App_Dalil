@@ -35,4 +35,8 @@ Route::namespace('App\Http\Controllers')->middleware(['auth'])->group(function (
     Route::delete('delete/image/{id}', 'HotelController@delete_image')->name('delete.image');
     Route::resource('hotel/appartment', 'HotelAppartmentController');
     Route::resource('state/city', 'StateCityController');
+
+    // All Request
+    // Hotel Appartment Request
+    Route::get('appartment/request', 'RequestController@appartment_request')->name('appartment_request');
 });
