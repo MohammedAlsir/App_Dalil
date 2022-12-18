@@ -15,8 +15,9 @@
 					"formdata": [
 						{
 							"key": "name",
-							"value": "Mohammed",
-							"type": "default"
+							"value": "Nohammed",
+							"type": "default",
+							"disabled": true
 						},
 						{
 							"key": "email",
@@ -25,18 +26,20 @@
 						},
 						{
 							"key": "password",
-							"value": "12345678",
+							"value": "123456788",
 							"type": "default"
 						},
 						{
 							"key": "password_confirmation",
 							"value": "12345678",
-							"type": "default"
+							"type": "default",
+							"disabled": true
 						},
 						{
 							"key": "phone",
 							"value": "0119053992",
-							"type": "default"
+							"type": "default",
+							"disabled": true
 						}
 					]
 				},
@@ -117,8 +120,18 @@
 			"response": []
 		},
 		{
-			"name": "Get All Hotels",
+			"name": "Get All Hotels -> link image http://127.0.0.1:8000/uploads/hotels/16707925945121.jpg",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiOTg1NTg1M2Y0MzBiOGRhNzU0YjRlNmU5Yjk2YzllYzE0NmQ4NWQ5OGM3ZjhkMDFkYjBiYTdkYzQ1NGJmZWEzOWY5MzA3MTM0MGRkYTg5ZWYiLCJpYXQiOjE2NzA3NTA2NjcuNTA5NzUzLCJuYmYiOjE2NzA3NTA2NjcuNTA5NzY3LCJleHAiOjE3MDIyODY2NjcuNDAyOTIyLCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.PMg2qcpGlIPLwCByZ-M26EFcqwUcPguFMZHXZasEjfJbhVVf1g6sb_7orP654iju9l9XkERXsaobr6cRiKu4MNnz2wmqmMiJjFTL58j9mn5-jXHzIqfGIB1IUY4Igu5rohL8vdJA3oljnY4gSHrmGRKT-Kxf1tl_egIW_8FVtnbGcIvKaNa7QgdK9EggieHeicsQ734gjbXWMb4ZkvNNsiXYRDCUiuaF9qFeTffGrpsxes0qYtsuD9f4vJqutBfQNR4L81sA5-8hQU8IQH81g2v_MOoy2kgvBcFz2C5Ta72SdToV6IAspL4VfqB6vjLfqEixCgctJffUgcYpu6DSqs5ajdyrk-tqVnXpsrF-6A28pyH3dKH0NskUWU4A950s9bsbooE_nmXa0DJAPOjukwPo7hOCU3BCG2MifvEjGE0XYfj0mtW3v-unYtChqPpBQ6f2n3Y_PxNYAPeppu9AvOeS9LHcL_5edp_2m3luoJCO16V_sYBZugc_Dceb5uUGbDjoyzkfi4kwagmm3pYzBC8sXExCltO-te8uk9_xzEBKpTrIc52a5eGvEZ-M45Tkese4T8paLwvaRyXBghhpgj89aAe-52SLeXu5PJoH9OsUdUvHPbfRarQ8P3EkVC7jhoK7swT8aLJ4H9IY5xY_zYcP2AwGsrGOn2PACqSJ3LY",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [
 					{
@@ -180,7 +193,7 @@
 			"response": []
 		},
 		{
-			"name": "Get all Appartment by hotel id",
+			"name": "Get all Appartment by hotel id -> link image http://127.0.0.1:8000/uploads/hotels/appartments/16707925945121.jpg",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -293,7 +306,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiYzg2YzI4NzFkOGMwZTkwNjZmNjg3MDU1NjhhZTQxZmM1ZWNiOGFkZTEzMTE0MTJmZmFiZTEyZDY2MWUyNGE5MTljZjExODJkNjQ1NzkwMjgiLCJpYXQiOjE2NzA0OTg4NjYuMjczNzk3LCJuYmYiOjE2NzA0OTg4NjYuMjczODExLCJleHAiOjE3MDIwMzQ4NjUuNjY1NDk3LCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.kjYPTPKLqKFM_qizpzeKAOhoFrnPKXTKI97069EAqYgpU28oRHLsQZ4ABVWeZngmuHbmm1XCdwgcHu2-krfRcKYcU8yYTwv0_FbT-2rqN16PbYvrmOolRmZMkVCpIUhInOMeEx9NTlbFdBOU21koTNvy4EB9nVxnTsjTiGHvwpw4H8sSXDESnyC_9SWvXEbM-BEVL4lG9WWTfPoWo8z9WczK2Q26ealpjjb35cNl6s867AKT2Zn_Lbke55G8PqxTnHp748N9bUwSqzaHYX2Uan0xck4PiFOXGZZgQLMUYijRGa2jTlxmcFHtRF0RDochPZVWFrDY41o-ByG8i5nh7pDdW220SyYiNVnFR-1uhE7yXHvt_PRITGM7Kk3WkaYv7vDKkKJ7NQivTDQZGI54HDEcP6rZMN9U_f4-vQQfSsYosLbu5v0KdGGOO04lBpnOvpND0K2IMwQ5b4mo5z7uEoeganBT9QPug3pE0XuxxkO3d1G2gr52jou9LSarwQxWftwsyRCwHa8OC7fEFc6tS4jF8Tncq7j7L6rcLg6TGB1ygF5J7ED52dT9iLhGuP1GbZTM22hRAhfsriuj5JrIeIYJbAFdtDrifcbin7zWE5Lb27unJsyAW2RGJk5lb5qr3xb7IFPtZTsRqKJ3aulztQBNxGOF1aAKhRc_ncmmOyA",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNzZkZmU1NTE1YjJjNDE4Mzk3YmY0ZTNlMzFjNDhjYzFiM2EwZWM0YTFkNDQ0ZTg3NTVmM2Q5OWZlNmQ2ZWNhYzI4ZDNkNWVjZjlmZjUyODIiLCJpYXQiOjE2NzEyOTg1NjguNTk0MTM0LCJuYmYiOjE2NzEyOTg1NjguNTk0MTQ1LCJleHAiOjE3MDI4MzQ1NjguMDAwMjkxLCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.rGrf3hl3uZd14R0lckm0G-0nieH17H6zLhqBenqqfP1QoS1NdL2qos6S9-EqVVW7skfwxhZ96g5T70yOyVpdt5rgLJclXuqm3mGf6jtD3hatQF3gT36Kf24edt22dx839BLnou5qem5jLUyFpbAhkb96eRcHByXQO9EuXQ0T71341nNgRCTgXWaQk0e9zOVVJIPS-k0_kScyye3ZcJpkBikJ-R3CoSDfsLZP9pNDiD2iZ_K6azW4s3mncXHH25T-yFbl7g4iMCIOEpti02r_0H8gx8pWB_hY6lQFakLipENLOZLgzhfb8aLCYf3g__GjWtL--vVH_MbzACdAqOeDS_SfYxui9eZ9tTgABfl1yCdgJg-NPIDkWDg51ObfwngnLOwAl72hVSenDTuiCq52GOO8V79gu268kdIxT5Vi9wl4RoTuZsEhNkT5fuZjO8d-JOLUtDzRU_d6c64lrN-ZgP_rm0Ae-0_L3Bm8GGQ-nht7tOyld3SPpAbVicHDC0e6_BImf2ZeiPMSBkMPfmBODgLIl4ZXaRRALZmDiX7QU0F8wmvTz0ncRrCqfwqJbmbJ7c9CVyNiZAjBYI-YoEf3rOhrkMPYytHdusWKdWCy_Td-D8eO4jOH1gWVjlZ6ZX84koDl3RNad7EFbjjP1oETzOoHyjco9Cz6w9Heoz3QrLM",
 							"type": "string"
 						}
 					]
@@ -354,8 +367,7 @@
 						{
 							"key": "identification_photo",
 							"type": "file",
-							"src": "/F:/BBM/z.jpg",
-							"disabled": true
+							"src": "/F:/BBM/b.jpg"
 						}
 					]
 				},
@@ -623,6 +635,122 @@
 						"city",
 						"2",
 						"hotels"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "new request hotel appartment -> by appartment id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiM2Q0YTRiZmVkZTMyMjg0M2JiZDNlZGJkMWZhNjI1OTkxNmFjNmZmZWZlMDE2YzM5NDY1OWM5MjVmZTgzOTI4ODBiMzJhN2QwZjExZTcwYzQiLCJpYXQiOjE2NzEzNDk0MTQuMDIyOTE4LCJuYmYiOjE2NzEzNDk0MTQuMDIyOTI1LCJleHAiOjE3MDI4ODU0MTMuNzA4OTk1LCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.fnP4WjUzG6aY1jeui9WKar-NXjfD99GZlAPIEwjQw_4tD1uszCFDXchuAHZylUnEacrPjnSz3HlbgnjunMCy8yUOYjHjEerstqR8g3gjQRGrooKH-ZQrnwH28IwRczAb5BQQ-1ZJAVd0Le75Ur4d583_xnHZSlU4hsRkikwLmptg_RxifEUIv8LG80JBqK3g3BgKpXt1hadRJHcSh2K0EJgcfqVqubMb6xCEllzyEzhEUFCoBUCStjXtQK1xbYAHLqUq-2UAd-n1z67z3oO2SYsS1toBmFv7WYPRAYM4hibw65CDKunZrPdX4dkwRO1lukard2rm02uPFOdmR5vwnBWTQQvVJCCcKXxwO5PI1yyD-tEf5IMoYdZIBoXOFtBL-hJreh3Hu9aEEzixlGrI1eOdUxHB8Div5XubpkAnv8q7SOHlvKDMu5At-4etunBqn1iUCdG_RPUyZiy_8H7C0eL5r494ho43RYvkZ2uuc9li8PTkV6U9bADhMow46zFs-E7haBrXdnyTiHZOAVcny9GBBlpu-zZ41QVY1NLhcZIRXOszfQxpr1332jUrpRwT2I8VikYmI7yXK9D2XmpbMmGBUWO1NTjtNXOUwVh_U8JAakn07Gd_2yWl8pV7qGjaErKrWpSwcXa3vOLzkjL7otfrVc8rg-f629ASwDk-JdY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "ar",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "from",
+							"value": "2022-12-20",
+							"type": "default"
+						},
+						{
+							"key": "to",
+							"value": "2022-12-25",
+							"type": "default"
+						},
+						{
+							"key": "notes",
+							"value": "jdkskdsk",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/appartment/1/request",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"appartment",
+						"1",
+						"request"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "request for pay  ==> url pay ==>http://127.0.0.1:8000/uploads/notice_photo/16703530083258.jpg",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiM2Q0YTRiZmVkZTMyMjg0M2JiZDNlZGJkMWZhNjI1OTkxNmFjNmZmZWZlMDE2YzM5NDY1OWM5MjVmZTgzOTI4ODBiMzJhN2QwZjExZTcwYzQiLCJpYXQiOjE2NzEzNDk0MTQuMDIyOTE4LCJuYmYiOjE2NzEzNDk0MTQuMDIyOTI1LCJleHAiOjE3MDI4ODU0MTMuNzA4OTk1LCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.fnP4WjUzG6aY1jeui9WKar-NXjfD99GZlAPIEwjQw_4tD1uszCFDXchuAHZylUnEacrPjnSz3HlbgnjunMCy8yUOYjHjEerstqR8g3gjQRGrooKH-ZQrnwH28IwRczAb5BQQ-1ZJAVd0Le75Ur4d583_xnHZSlU4hsRkikwLmptg_RxifEUIv8LG80JBqK3g3BgKpXt1hadRJHcSh2K0EJgcfqVqubMb6xCEllzyEzhEUFCoBUCStjXtQK1xbYAHLqUq-2UAd-n1z67z3oO2SYsS1toBmFv7WYPRAYM4hibw65CDKunZrPdX4dkwRO1lukard2rm02uPFOdmR5vwnBWTQQvVJCCcKXxwO5PI1yyD-tEf5IMoYdZIBoXOFtBL-hJreh3Hu9aEEzixlGrI1eOdUxHB8Div5XubpkAnv8q7SOHlvKDMu5At-4etunBqn1iUCdG_RPUyZiy_8H7C0eL5r494ho43RYvkZ2uuc9li8PTkV6U9bADhMow46zFs-E7haBrXdnyTiHZOAVcny9GBBlpu-zZ41QVY1NLhcZIRXOszfQxpr1332jUrpRwT2I8VikYmI7yXK9D2XmpbMmGBUWO1NTjtNXOUwVh_U8JAakn07Gd_2yWl8pV7qGjaErKrWpSwcXa3vOLzkjL7otfrVc8rg-f629ASwDk-JdY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "ar",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "notice_photo",
+							"type": "file",
+							"src": "/F:/BBM/x.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/appartment/1/pay",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"appartment",
+						"1",
+						"pay"
 					]
 				}
 			},
