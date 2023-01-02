@@ -36,6 +36,9 @@ Route::namespace('App\Http\Controllers')->middleware(['auth'])->group(function (
     Route::resource('hotel/appartment', 'HotelAppartmentController');
     Route::resource('state/city', 'StateCityController');
 
+    Route::resource('cars', 'CarController');
+
+
     // All Request
     // Hotel Appartment Request
     Route::get('appartment/request', 'RequestController@appartment_request')->name('appartment_request');

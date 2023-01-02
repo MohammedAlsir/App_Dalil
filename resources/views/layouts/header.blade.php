@@ -47,6 +47,12 @@
                     <li><a href="{{route('appartment_request')}}"><i class="fa fa-home"></i>طلبات الشقق الفندقية</a></li>
 
 
+                    <li><a><i class="fa fa-cubes"></i>السيارات<span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="{{route('cars.index')}}">كل السيارات</a></li>
+                            <li><a href="{{route('cars.create')}}">إضافة سيارة جديدة</a></li>
+                        </ul>
+                    </li>
 
                     <!-- Hotels -->
 

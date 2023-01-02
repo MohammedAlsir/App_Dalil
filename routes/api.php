@@ -27,6 +27,9 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api'], func
     Route::get('hotels/{id}/appartments', 'HotelController@get_hotel_appartments_by_id'); // == get All Appartments by hotel ID ==
     Route::get('appartment/{id}', 'HotelController@get_appartments_by_id'); // == get one Appartment by appartment ID ==
 
+    // كل السيارات حسب التصنيفات
+    Route::post('cars', 'CarsController@get_cars'); // == get All Cars ==
+
     // Get Public Data
     Route::get('states', 'GetController@get_state'); // == get all State ==
     Route::get('state/{id}/cities', 'GetController@get_cities'); // == get all cities by state id ==
@@ -43,6 +46,11 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api'], func
         // Apartment Request
         Route::post('appartment/{id}/request', 'HotelController@appartment_request');
         Route::post('appartment/{id}/pay', 'HotelController@appartment_pay');
+
+        // Cars Request
+        Route::post('cars/{id}/request', 'CarsController@car_request');
+        Route::post('cars/{id}/pay', 'CarsController@car_pay');
+        Route::post('like/car/{car_id}', 'CarsController@add_like_for_car');
     });
 
 

@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('photo');
             $table->foreignId('hotel_id')->nullable()->constrained('hotels')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('appartment_id')->nullable()->constrained('hotel_appartments')->onDelete('cascade')->onUpdate('cascade');
+
+            $table->foreignId('car_id')->nullable()->constrained('cars')->onDelete('cascade')->onUpdate('cascade');
+
             $table->timestamps();
         });
     }
