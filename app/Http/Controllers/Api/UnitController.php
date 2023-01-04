@@ -164,21 +164,26 @@ class UnitController extends Controller
     {
         $appartment_request = Hotel_apartment_requests::where('id', $appartment_id)->where('type', 'unit')->first();
         if ($appartment_request) {
-            if ($appartment_request->status == 2) {
-                return $this->returnMessage(false, 'عفوا تم تاكيد الطلب لا يمكن الدفع مرة اخرى', 'Sorry, the request has been confirmed. You cannot pay again', 200);
-            } elseif ($appartment_request->status != 1) {
-                return $this->returnMessage(false, 'عفوا لايمكن الدفع حتي يتم القبول المبدئي للطلب', 'Sorry, payment cannot be made until the initial acceptance of the request', 200);
-            }
             $validator = Validator::make(
                 $request->all(),
                 [
                     'notice_photo'      => 'required|image',
+                    'payment_method'     => 'required|in:cash,bank',
+
                 ]
             );
             // اذا وجدت مشكلة في التحقق
             if ($validator->fails())
                 return $this->returnMessage(false, $validator->errors()->all(), '', 200);
 
+            if ($appartment_request->status == 2) {
+                return $this->returnMessage(false, 'عفوا تم تاكيد الطلب لا يمكن الدفع مرة اخرى', 'Sorry, the request has been confirmed. You cannot pay again', 200);
+            } elseif ($appartment_request->status != 1) {
+                return $this->returnMessage(false, 'عفوا لايمكن الدفع حتي يتم القبول المبدئي للطلب', 'Sorry, payment cannot be made until the initial acceptance of the request', 200);
+            }
+
+
+            $appartment_request->payment_method = $request->payment_method;
 
             // For Photo
             $formFileName = "notice_photo";

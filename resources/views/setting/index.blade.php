@@ -34,13 +34,43 @@
                 </div>
             </div>
 
-             <div class="form-group">
+            <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" >  رقم الهاتف
                     <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <input type="number" name="phone"  required="required"
                             class="form-control col-md-7 col-xs-12" value="{{ $setting->phone }}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" >  رقم حساب البنك
+                    <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="number" name="account_number"  required="required"
+                            class="form-control col-md-7 col-xs-12" value="{{ $setting->account_number }}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" >  اسم صاحب الحساب
+                    <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" name="account_name"  required="required"
+                            class="form-control col-md-7 col-xs-12" value="{{ $setting->account_name }}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" >  اسم البنك
+                    <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" name="bank_name"  required="required"
+                            class="form-control col-md-7 col-xs-12" value="{{ $setting->bank_name }}">
                 </div>
             </div>
 

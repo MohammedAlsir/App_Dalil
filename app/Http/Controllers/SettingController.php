@@ -128,6 +128,11 @@ class SettingController extends Controller
         $setting->address = $request->address;
         $setting->phone = $request->phone;
 
+        $setting->account_name = $request->account_name;
+        $setting->account_number = $request->account_number;
+        $setting->bank_name = $request->bank_name;
+
+
         $setting->save();
         // toast('تم التعديل بنجاح', 'success');
         toastr()->info('تم التعديل بنجاح', 'نجاح');

@@ -21,6 +21,7 @@
                                     <th>نوع السيارة</th>
                                     <th>من تاريخ</th>
                                     <th>الي تاريخ</th>
+                                    <th>طريقة الدفع</th>
                                     <th>حالة الطلب</th>
                                     <th>العمليات</th>
                                 </tr>
@@ -56,6 +57,13 @@
                                     </td>
                                     <td>{{$item->from}}</td>
                                     <td>{{$item->to}}</td>
+                                    <td>
+                                        @if ($item->payment_method =="cash")
+                                            كاش
+                                        @elseif($item->payment_method =="bank")
+                                            بنك
+                                        @endif
+                                    </td>
                                     <td>@livewire('chang-state-request', ['request_id' => $item->id ,'type'=>'1'], key($item->id))</td>
 
 
@@ -204,6 +212,21 @@
                                                             </span>
                                                             <span class="message">
                                                                 {{number_format($item->total)}}
+                                                            </span>
+                                                        </a>
+                                                    </li>
+
+                                                    <li>
+                                                        <a>
+                                                            <span>
+                                                                <span>طريقة الدفع</span>
+                                                            </span>
+                                                            <span class="message">
+                                                                @if ($item->payment_method =="cash")
+                                                                    كاش
+                                                                @elseif($item->payment_method =="bank")
+                                                                    بنك
+                                                                @endif
                                                             </span>
                                                         </a>
                                                     </li>

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('hotel_apartment_requests', function (Blueprint $table) {
             $table->id();
             $table->enum('type', ['hotel', 'unit']);
+            $table->enum('payment_method', ['cash', 'bank'])->nullable();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('appartment_id')->nullable()->constrained('hotel_appartments')->onDelete('cascade')->onUpdate('cascade');
             $table->date('from');
@@ -26,9 +27,7 @@ return new class extends Migration
             $table->integer('total');
             $table->string('notes')->nullable();
             $table->string('notice_photo')->nullable();
-            // 0 => new
-            // 1 => initial_acceptance
-            // 2 => accepted
+            // 0 => new // 1 => initial_acceptance // 2 => accepted
             $table->enum('status', [0, 1, 2])->default(0);
             $table->timestamps();
         });

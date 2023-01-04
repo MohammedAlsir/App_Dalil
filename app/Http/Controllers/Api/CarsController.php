@@ -9,10 +9,13 @@ use App\Models\Like;
 use App\Traits\ApiMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
 class CarsController extends Controller
 {
+    private $uploadPath = "uploads/notice_photo/";
+
     use ApiMessage;
     public function get_cars(Request $request)
     {
@@ -97,7 +100,7 @@ class CarsController extends Controller
             }
             $new_request->save();
 
-            $new_request['car'] = $new_request->car;
+            $new_request->car;
 
             return $this->returnData('new_request', $new_request);
         } else {
@@ -107,20 +110,21 @@ class CarsController extends Controller
 
 
     // Request Pay
-    public function appartment_pay(Request $request, $appartment_id)
+    public function car_pay(Request $request, $car_id)
 
     {
-        $appartment_request = Hotel_apartment_requests::find($appartment_id);
-        if ($appartment_request) {
-            if ($appartment_request->status == 2) {
+        $car_request = CarRequest::find($car_id);
+        if ($car_request) {
+            if ($car_request->status == 2) {
                 return $this->returnMessage(false, 'عفوا تم تاكيد الطلب لا يمكن الدفع مرة اخرى', 'Sorry, the request has been confirmed. You cannot pay again', 200);
-            } elseif ($appartment_request->status != 1) {
+            } elseif ($car_request->status != 1) {
                 return $this->returnMessage(false, 'عفوا لايمكن الدفع حتي يتم القبول المبدئي للطلب', 'Sorry, payment cannot be made until the initial acceptance of the request', 200);
             }
             $validator = Validator::make(
                 $request->all(),
                 [
                     'notice_photo'      => 'required|image',
+                    'payment_method'     => 'required|in:cash,bank',
                 ]
             );
             // اذا وجدت مشكلة في التحقق
@@ -133,8 +137,8 @@ class CarsController extends Controller
             $fileFinalName = "";
             if ($request->$formFileName != "") {
                 // Delete file if there is a new one
-                if ($appartment_request->$formFileName) {
-                    File::delete($this->uploadPath . $appartment_request->notice_photo);
+                if ($car_request->$formFileName) {
+                    File::delete($this->uploadPath . $car_request->notice_photo);
                 }
                 $fileFinalName = time() . rand(
                     1111,
@@ -145,11 +149,12 @@ class CarsController extends Controller
             }
 
             if ($fileFinalName != "") {
-                $appartment_request->$formFileName = $fileFinalName;
+                $car_request->$formFileName = $fileFinalName;
             }
             // For Photo
 
-            $appartment_request->save();
+            $car_request->payment_method = $request->payment_method;
+            $car_request->save();
 
             // $new_request['appartment'] = $new_request->appartment;
             return $this->returnMessage(true, 'تم رفع الاشعار ', 'Notice has been raised', 200);

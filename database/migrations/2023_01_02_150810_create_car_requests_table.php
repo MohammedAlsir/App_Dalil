@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('car_requests', function (Blueprint $table) {
             $table->id();
+            $table->enum('payment_method', ['cash', 'bank'])->nullable();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('car_id')->nullable()->constrained('cars')->onDelete('cascade')->onUpdate('cascade');
             $table->date('from');

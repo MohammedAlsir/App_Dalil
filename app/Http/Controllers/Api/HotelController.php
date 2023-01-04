@@ -130,6 +130,7 @@ class HotelController extends Controller
             $new_request->from = $request->from;
             $new_request->to = $request->to;
             $new_request->notes = $request->notes;
+            $new_request->payment_method = $request->payment_method;
 
             // automatic adds
             $new_request->user_id = Auth::user()->id;
@@ -162,21 +163,26 @@ class HotelController extends Controller
     {
         $appartment_request = Hotel_apartment_requests::where('id', $appartment_id)->where('type', 'hotel')->first();
         if ($appartment_request) {
+            $validator = Validator::make(
+                $request->all(),
+                [
+                    'notice_photo'      => 'image',
+                    'payment_method'     => 'required|in:cash,bank',
+                ]
+            );
+            // اذا وجدت مشكلة في التحقق
+
+            if ($validator->fails())
+                return $this->returnMessage(false, $validator->errors()->all(), '', 200);
+
             if ($appartment_request->status == 2) {
                 return $this->returnMessage(false, 'عفوا تم تاكيد الطلب لا يمكن الدفع مرة اخرى', 'Sorry, the request has been confirmed. You cannot pay again', 200);
             } elseif ($appartment_request->status != 1) {
                 return $this->returnMessage(false, 'عفوا لايمكن الدفع حتي يتم القبول المبدئي للطلب', 'Sorry, payment cannot be made until the initial acceptance of the request', 200);
             }
-            $validator = Validator::make(
-                $request->all(),
-                [
-                    'notice_photo'      => 'required|image',
-                ]
-            );
-            // اذا وجدت مشكلة في التحقق
-            if ($validator->fails())
-                return $this->returnMessage(false, $validator->errors()->all(), '', 200);
 
+
+            $appartment_request->payment_method = $request->payment_method;
 
             // For Photo
             $formFileName = "notice_photo";
@@ -202,7 +208,7 @@ class HotelController extends Controller
             $appartment_request->save();
 
             // $new_request['appartment'] = $new_request->appartment;
-            return $this->returnMessage(true, 'تم رفع الاشعار ', 'Notice has been raised', 200);
+            return $this->returnMessage(true, 'تم اكمال العملية', 'The process has been completed', 200);
 
             // return $this->returnData('appartment_request', $appartment_request);
         } else {

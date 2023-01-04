@@ -46,6 +46,7 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api'], func
 
     // For Authentication
     Route::group(['middleware' => 'auth:api'], function () {
+        Route::get('get_data', 'GetController@get_data'); //
         Route::get('profile', 'AuthController@get_profile');
         Route::post('profile', 'AuthController@edit_profile');
         // Like
@@ -55,6 +56,7 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api'], func
         Route::post('like/unit_appartment/{appartments_id}', 'UnitController@add_like_for_appartment');
         // Apartment Request --> hotel
         Route::post('appartment/{id}/request', 'HotelController@appartment_request');
+        Route::post('requests', 'GetController@get_request');
         Route::post('appartment/{id}/pay', 'HotelController@appartment_pay');
         // Apartment Request --> unit
         Route::post('unit_appartment/{id}/request', 'UnitController@appartment_request');
@@ -64,6 +66,7 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api'], func
         Route::post('cars/{id}/request', 'CarsController@car_request');
         Route::post('cars/{id}/pay', 'CarsController@car_pay');
         Route::post('like/car/{car_id}', 'CarsController@add_like_for_car');
+        Route::post('car/requests', 'GetController@get_request_car');
     });
 
 
