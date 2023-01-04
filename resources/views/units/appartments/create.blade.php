@@ -21,8 +21,8 @@
 <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
         <div class="x_title">
-            <h2> إضافة شقة فندقية جديدة
-                <small>بيانات الشقة الفندقية الاساسية</small>
+            <h2> إضافة شقة سكنية جديدة
+                <small>بيانات الشقة السكنية الاساسية</small>
             </h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -32,18 +32,18 @@
         </div>
         <div class="x_content">
             <br>
-            <form  method="POST" action="{{route('appartment.store')}}" id="demo-form2" data-parsley-validate="" enctype="multipart/form-data" class="form-horizontal form-label-left" >
+            <form  method="POST" action="{{route('appartments.store')}}" id="demo-form2" data-parsley-validate="" enctype="multipart/form-data" class="form-horizontal form-label-left" >
                 @csrf
 
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="hotel">
-                        الفندق
+                        الوحدة السكنية
                         <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <select id="hotel" name="hotel" required  class="select_2 form-control col-md-7 col-xs-12">
-                            <option value="">اختر الفندق </option>
-                            @foreach ($hotels as $hotel)
+                            <option value="">اختر الوحدة السكنية </option>
+                            @foreach ($units as $hotel)
                                 <option value="{{$hotel->id}}">{{$hotel->name_ar}} - {{$hotel->name_en}}</option>
                             @endforeach
                         </select>
@@ -64,7 +64,7 @@
                 @endforeach
 
 
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="type">
                         نوع الغرفة / الجناح
                         <span class="required">*</span>
@@ -77,7 +77,7 @@
                             @endforeach
                         </select>
                     </div>
-                </div>
+                </div> --}}
 
                 @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                     <div class="form-group">

@@ -21,8 +21,8 @@
 <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
         <div class="x_title">
-            <h2> إضافة شقة فندقية جديدة
-                <small>بيانات الشقة الفندقية الاساسية</small>
+            <h2> تعديل بيانات الشقة السكنية
+                <small>بيانات الشقة السكنية الاساسية</small>
             </h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -32,19 +32,20 @@
         </div>
         <div class="x_content">
             <br>
-            <form  method="POST" action="{{route('appartment.store')}}" id="demo-form2" data-parsley-validate="" enctype="multipart/form-data" class="form-horizontal form-label-left" >
+            <form  method="POST" action="{{route('appartments.update',$appartment->id)}}" id="demo-form2" data-parsley-validate="" enctype="multipart/form-data" class="form-horizontal form-label-left" >
                 @csrf
+                @method('put')
 
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="hotel">
-                        الفندق
+                        الوحدة السكنية
                         <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <select id="hotel" name="hotel" required  class="select_2 form-control col-md-7 col-xs-12">
-                            <option value="">اختر الفندق </option>
-                            @foreach ($hotels as $hotel)
-                                <option value="{{$hotel->id}}">{{$hotel->name_ar}} - {{$hotel->name_en}}</option>
+                            <option value="">اختر الوحدة السكنية </option>
+                            @foreach ($units as $hotel)
+                                <option  {{$appartment->hotel_id == $hotel->id?  "selected":""}} value="{{$hotel->id}}">{{$hotel->name_ar}} - {{$hotel->name_en}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -57,14 +58,14 @@
                             <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" required id="name_{{$localeCode}}" name="name_{{$localeCode}}"
+                            <input type="text" required value="{!! $appartment->{'name_'.$localeCode} !!}" id="name_{{$localeCode}}" name="name_{{$localeCode}}"
                                 class="form-control col-md-7 col-xs-12">
                         </div>
                     </div>
                 @endforeach
 
 
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="type">
                         نوع الغرفة / الجناح
                         <span class="required">*</span>
@@ -73,11 +74,11 @@
                         <select id="type" name="type" required  class="select_2 form-control col-md-7 col-xs-12">
                             <option value="">اختر النوع</option>
                             @foreach ($types as $type)
-                                <option value="{{$type->id}}">{{$type->name_ar}} - {{$type->name_en}}</option>
+                                <option {{$appartment->type_appartment_id == $type->id?  "selected":""}} value="{{$type->id}}">{{$type->name_ar}} - {{$type->name_en}}</option>
                             @endforeach
                         </select>
                     </div>
-                </div>
+                </div> --}}
 
                 @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                     <div class="form-group">
@@ -85,7 +86,7 @@
                             <span class="required">*<i class="flag">{!! @Helper::languageName($localeCode) !!}</i></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" required id="floor_{{$localeCode}}" name="floor_{{$localeCode}}"
+                            <input type="text" required value="{!! $appartment->{'floor_'.$localeCode} !!}" id="floor_{{$localeCode}}" name="floor_{{$localeCode}}"
                                 class="form-control col-md-7 col-xs-12">
                         </div>
                     </div>
@@ -97,7 +98,7 @@
                         </span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="number" required id="number_of_rooms" name="number_of_rooms"
+                        <input value="{{ $appartment->number_of_rooms }}" required type="number" id="number_of_rooms" name="number_of_rooms"
                             class="form-control col-md-7 col-xs-12">
                     </div>
                 </div>
@@ -109,7 +110,7 @@
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <textarea id="mytextarea" required rows="5" name="features_{{$localeCode}}"
-                                class="form-control col-md-7 col-xs-12"></textarea>
+                                class="form-control col-md-7 col-xs-12">{!! $appartment->{'features_'.$localeCode} !!}</textarea>
                         </div>
                     </div>
                 @endforeach
@@ -119,7 +120,7 @@
                         <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="number" required id="night_price" name="night_price"
+                        <input value="{{$appartment->night_price}}" type="number" required id="night_price" name="night_price"
                             class="form-control col-md-7 col-xs-12">
                     </div>
                 </div>
@@ -128,25 +129,39 @@
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="discount">التخفيض
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="number" id="discount" name="discount"
+                        <input value="{{$appartment->discount}}" type="number" id="discount" name="discount"
                             class="form-control col-md-7 col-xs-12">
                     </div>
                 </div>
 
+
                 <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >الصور </label>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" > </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12" >
+                            {{-- <form action=""> --}}
+
+                        @livewire('delete-image', ['hotel_id' => 0 ,'appartment_id'=>$appartment->id])
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-12 col-xs-12" >الصور </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <input type="file" multiple  name="photo[]"
                             class="form-control col-md-7 col-xs-12"></input>
+                        <p>الحد الاقصى للصور 3 صور </p>
+
                     </div>
                 </div>
+
 
 
                 <div class="ln_solid"></div>
                 <div class="form-group">
                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3 text-left">
                         {{-- <button type="submit" class="btn btn-primary">انصراف</button> --}}
-                        <button type="submit" class="btn btn-success">حفظ</button>
+                        <button type="submit" class="btn btn-success">تعديل</button>
                     </div>
                 </div>
 

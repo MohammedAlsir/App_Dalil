@@ -14,77 +14,77 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
-class HotelController extends Controller
+class UnitController extends Controller
 {
     use ApiMessage;
     private $uploadPath = "uploads/notice_photo/";
 
     // عرض كل الفنادق الموجودة
-    public function get_hotel()
+    public function get_units()
     {
-        $hotels = Hotel::where('type', 'hotel')->with('images')->withCount('like')->orderBy('id', 'DESC')->get();
-        foreach ($hotels as $item) {
+        $units = Hotel::where('type', 'unit')->with('images')->withCount('like')->orderBy('id', 'DESC')->get();
+        foreach ($units as $item) {
             $item->city->state;
         }
-        return $this->returnData('hotels', $hotels);
+        return $this->returnData('units', $units);
     }
 
     // Top 3 Hotels
-    public function get_top_hotel()
+    public function get_top_units()
     {
-        $hotels = Hotel::where('type', 'hotel')->with('images')->withCount('like')->orderBy('stars', 'DESC')->take(3)->get();
-        foreach ($hotels as $item) {
+        $units = Hotel::where('type', 'unit')->with('images')->withCount('like')->orderBy('id', 'DESC')->take(3)->get();
+        foreach ($units as $item) {
             $item->city->state;
             // $item->setAttribute('likes', $item->like->count());
         }
-        return $this->returnData('hotels', $hotels);
+        return $this->returnData('units', $units);
     }
 
     // get hotel appartments by id
-    public function get_hotel_appartments_by_id($id)
+    public function get_unit_appartments_by_id($id)
     {
-        if (Hotel::where('type', 'hotel')->where('id', $id)->first()) {
-            $appartments = HotelAppartment::with('images', 'type_appartment', 'hotel')->withCount('like')->where('type', 'hotel')->where('hotel_id', $id)->orderBy('id', 'DESC')->get();
-            return $this->returnData('appartments', $appartments);
+        if (Hotel::where('type', 'unit')->where('id', $id)->first()) {
+            $unit_appartments = HotelAppartment::with('images', 'type_appartment', 'hotel')->withCount('like')->where('type', 'unit')->where('hotel_id', $id)->orderBy('id', 'DESC')->get();
+            return $this->returnData('unit_appartments', $unit_appartments);
         } else {
-            return $this->returnMessage(false, 'عفوا هذا الفندق غير موجود', 'Sorry, this hotel does not exist', 200);
+            return $this->returnMessage(false, 'عفوا هذه الوحدة السكنية غير موجودة', 'Sorry, this hotel does not exist', 200);
         }
     }
 
     // Get appartment by id
     public function get_appartments_by_id($id)
     {
-        $appartment = HotelAppartment::with('images', 'type_appartment', 'hotel')->withCount('like')->where('type', 'hotel')->where('id', $id)->first();
-        if ($appartment) {
-            return $this->returnData('appartment', $appartment);
+        $unit_appartments = HotelAppartment::with('images', 'type_appartment', 'hotel')->withCount('like')->where('type', 'unit')->where('id', $id)->first();
+        if ($unit_appartments) {
+            return $this->returnData('unit_appartments', $unit_appartments);
         } else {
             return $this->returnMessage(false, 'عفوا هذه الشقة غير موجودة', 'Sorry, this apartment does not exist', 200);
         }
     }
 
     // Add Like For Hotel
-    public function add_like_for_hotel($hotel_id)
+    public function add_like_for_unit($unit_id)
     {
-        if (Hotel::where('type', 'hotel')->where('id', $hotel_id)->first()) {
-            if (Like::where('hotel_id', $hotel_id)->where('user_id', Auth::user()->id)->first()) {
-                return $this->returnMessage(false, 'عفوا انت معجب فعلا بهذا الفندق', 'Sorry, you really like this hotel', 200);
+        if (Hotel::where('type', 'unit')->where('id', $unit_id)->first()) {
+            if (Like::where('hotel_id', $unit_id)->where('user_id', Auth::user()->id)->first()) {
+                return $this->returnMessage(false, 'عفوا انت معجب فعلا بهذه الوحدة السكنية', 'Sorry, you really like this hotel', 200);
             } else {
                 $like = new Like();
                 $like->user_id = Auth::user()->id;
-                $like->hotel_id = $hotel_id;
+                $like->hotel_id = $unit_id;
                 $like->save();
             }
 
             return $this->returnMessage(true, 'اعجبني', 'like', 200);
         } else {
-            return $this->returnMessage(false, 'عفوا هذا الفندق غير موجود', 'Sorry, this hotel does not exist', 200);
+            return $this->returnMessage(false, 'عفوا هذا الوحدة السكنية غير موجودة', 'Sorry, this hotel does not exist', 200);
         }
     }
 
     // Add Like For appartment
     public function add_like_for_appartment($appartment_id)
     {
-        if (HotelAppartment::where('type', 'hotel')->where('id', $appartment_id)->first()) {
+        if (HotelAppartment::where('type', 'unit')->where('id', $appartment_id)->first()) {
             if (Like::where('appartment_id', $appartment_id)->where('user_id', Auth::user()->id)->first()) {
                 return $this->returnMessage(false, 'عفوا انت معجب فعلا بهذه الشقة', 'Sorry, you really like this appartment', 200);
             } else {
@@ -100,10 +100,10 @@ class HotelController extends Controller
         }
     }
 
-    // حجز شقة فندقية
+    // حجز شقة سكنية
     public function appartment_request(Request $request, $appartment_id)
     {
-        $hotel_appartmen = HotelAppartment::where('id', $appartment_id)->where('type', 'hotel')->first();
+        $hotel_appartmen = HotelAppartment::where('id', $appartment_id)->where('type', 'unit')->first();
         if ($hotel_appartmen) {
             $validator = Validator::make(
                 $request->all(),
@@ -127,6 +127,7 @@ class HotelController extends Controller
 
             $new_request = new Hotel_apartment_requests();
             // Add by user
+            $new_request->type = "unit";
             $new_request->from = $request->from;
             $new_request->to = $request->to;
             $new_request->notes = $request->notes;
@@ -142,12 +143,13 @@ class HotelController extends Controller
             $new_request->total = $days * ($hotel_appartmen->night_price - $hotel_appartmen->discount);
             $new_request->save();
 
-            $new_request->appartment->type_appartment;
 
             $new_request->appartment->images;
 
             $new_request->appartment->hotel->city;
             $new_request->appartment->hotel->images;
+
+            // $new_request['appartment'] = $new_request->appartment->hotel;
 
 
             return $this->returnData('new_request', $new_request);
@@ -160,7 +162,7 @@ class HotelController extends Controller
     public function appartment_pay(Request $request, $appartment_id)
 
     {
-        $appartment_request = Hotel_apartment_requests::where('id', $appartment_id)->where('type', 'hotel')->first();
+        $appartment_request = Hotel_apartment_requests::where('id', $appartment_id)->where('type', 'unit')->first();
         if ($appartment_request) {
             if ($appartment_request->status == 2) {
                 return $this->returnMessage(false, 'عفوا تم تاكيد الطلب لا يمكن الدفع مرة اخرى', 'Sorry, the request has been confirmed. You cannot pay again', 200);

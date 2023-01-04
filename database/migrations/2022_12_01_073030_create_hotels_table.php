@@ -15,12 +15,13 @@ return new class extends Migration
     {
         Schema::create('hotels', function (Blueprint $table) {
             $table->id();
+            $table->enum('type', ['hotel', 'unit']);
             $table->string('name_ar');
             $table->string('name_en');
             $table->foreignId('city_id')->constrained('cities')->onDelete('cascade')->onUpdate('cascade');
             // $table->double('lat')->nullable();
             // $table->double('lng')->nullable();
-            $table->integer('stars');
+            $table->integer('stars')->nullable();
             $table->longText('features_ar')->nullable();
             $table->longText('features_en')->nullable();
             $table->longText('location_ar')->nullable();

@@ -39,7 +39,7 @@
                 @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name_{{$localeCode}}">الاسم
-                        <span class="required"><i class="flag">{!! @Helper::languageName($localeCode) !!}</i></span>
+                        <span class="required">*<i class="flag">{!! @Helper::languageName($localeCode) !!}</i></span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <input type="text" value="{!!$car->{'name_'.$localeCode}!!}" required id="name_{{$localeCode}}" name="name_{{$localeCode}}"
@@ -53,6 +53,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="type">
                         نوع السيارة
+                        <span class="required">*<i class="flag"></i></span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <select id="type" name="type" required  class="form-control col-md-7 col-xs-12">
@@ -70,6 +71,7 @@
                  <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="motion_vector">
                         نوع ناقل الحركة
+                        <span class="required">*<i class="flag"></i></span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <select id="motion_vector" name="motion_vector" required  class="form-control col-md-7 col-xs-12">
@@ -83,7 +85,7 @@
 
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number_of_passengers">عدد الركاب
-                        <span class="required"><i class="flag"></i></span>
+                        <span class="required">*<i class="flag"></i></span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <input type="number" value="{{$car->number_of_passengers}}" required id="number_of_passengers" name="number_of_passengers"
@@ -93,7 +95,7 @@
 
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number_of_doors">عدد الابواب
-                        <span class="required"><i class="flag"></i></span>
+                        <span class="required">*<i class="flag"></i></span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <input type="number" value="{{$car->number_of_doors}}" required id="number_of_doors" name="number_of_doors"
@@ -103,7 +105,7 @@
 
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="day_price">سعر اليوم الواحد
-                        <span class="required"><i class="flag"></i></span>
+                        <span class="required">*<i class="flag"></i></span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <input type="number" value="{{$car->day_price}}" required id="day_price" name="day_price"
@@ -129,10 +131,10 @@
 
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Features_{{$localeCode}}">المميزات
-                            <span class="required"><i class="flag">{!! @Helper::languageName($localeCode) !!}</i></span>
+                            <span class="required">*<i class="flag">{!! @Helper::languageName($localeCode) !!}</i></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <textarea id="mytextarea" rows="5" name="features_{{$localeCode}}"
+                            <textarea id="" required rows="5" name="features_{{$localeCode}}"
                                 class="form-control col-md-7 col-xs-12">{!!$car->{'features_'.$localeCode}!!}</textarea>
                         </div>
                     </div>

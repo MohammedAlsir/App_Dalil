@@ -4,7 +4,7 @@
 <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
         <div class="x_title">
-            <h2> طلبات الشقق الفندقية </h2>
+            <h2> طلبات الشقق السكنية </h2>
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
@@ -18,7 +18,7 @@
                                 <tr>
                                     <th>الرقم</th>
                                     <th>اسم الغرفة</th>
-                                    <th>اسم الفندق</th>
+                                    <th>اسم الوحدة السكنية</th>
                                     <th>من تاريخ</th>
                                     <th>الي تاريخ</th>
                                     <th>حالة الطلب</th>
@@ -28,7 +28,7 @@
 
 
                             <tbody>
-                                @foreach ($apprtment_request as $item)
+                                @foreach ($unit_apprtment_request as $item)
                                 <tr>
                                     <td>{{$index ++}}</td>
                                     <td>{{$item->appartment->name_ar}} - {{$item->appartment->name_en}}</td>
@@ -74,14 +74,14 @@
                                                 <button type="button" class="close" data-dismiss="modal"><span
                                                         aria-hidden="true">×</span>
                                                 </button>
-                                                <h4 class="modal-title" id="myModalLabel">تفاصيل طلب الشقة الفندقية</h4>
+                                                <h4 class="modal-title" id="myModalLabel">تفاصيل طلب الشقة السكنية</h4>
                                             </div>
                                             <div class="modal-body">
                                                 <ul class="list-unstyled msg_list">
                                                     <li>
                                                         <a>
                                                             <span>
-                                                                <span>اسم الشقة الفندقية</span>
+                                                                <span>اسم الشقة السكنية</span>
                                                             </span>
                                                             <span class="message">
                                                                 {{$item->appartment->name_ar}} - {{$item->appartment->name_en}}
@@ -91,14 +91,14 @@
                                                     <li>
                                                         <a>
                                                             <span>
-                                                                <span>الفندق</span>
+                                                                <span>الوحدة السكنية</span>
                                                             </span>
                                                             <span class="message">
                                                                 {{$item->appartment->hotel->name_ar}} - {{$item->appartment->hotel->name_en}}
                                                             </span>
                                                         </a>
                                                     </li>
-                                                    <li>
+                                                    {{-- <li>
                                                         <a>
                                                             <span>
                                                                 <span>نوع الغرفة</span>
@@ -107,7 +107,7 @@
                                                                     {{$item->appartment->type_appartment->name_ar}} -{{$item->appartment->type_appartment->name_en}}
                                                             </span>
                                                         </a>
-                                                    </li>
+                                                    </li> --}}
                                                     <li>
                                                         <a>
                                                             <span>

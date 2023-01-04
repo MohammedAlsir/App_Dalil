@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('hotel_apartment_requests', function (Blueprint $table) {
             $table->id();
+            $table->enum('type', ['hotel', 'unit']);
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('appartment_id')->nullable()->constrained('hotel_appartments')->onDelete('cascade')->onUpdate('cascade');
             $table->date('from');

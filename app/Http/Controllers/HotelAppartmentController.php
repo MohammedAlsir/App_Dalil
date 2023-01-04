@@ -19,7 +19,7 @@ class HotelAppartmentController extends Controller
      */
     public function index()
     {
-        $hotel_appartment  = HotelAppartment::orderBy('id', 'DESC')->get();
+        $hotel_appartment  = HotelAppartment::where('type', 'hotel')->orderBy('id', 'DESC')->get();
         $index = 1;
         return view('hotels.appartments.index', compact('hotel_appartment', 'index'));
     }
@@ -31,7 +31,7 @@ class HotelAppartmentController extends Controller
      */
     public function create()
     {
-        $hotels = Hotel::orderBy('id', 'DESC')->get();
+        $hotels = Hotel::where('type', 'hotel')->orderBy('id', 'DESC')->get();
         $types = TypeAppartment::orderBy('id', 'DESC')->get();
 
         return view('hotels.appartments.create', compact('hotels', 'types'));
@@ -57,6 +57,8 @@ class HotelAppartmentController extends Controller
             'photo.max' => 'عدد الصور اكثر من العدد المحدد'
         ]);
         $hotel_appartment = new HotelAppartment();
+        $hotel_appartment->type = "hotel";
+
         // Is Required
         $hotel_appartment->name_ar = $request->name_ar;
         $hotel_appartment->name_en = $request->name_en;
@@ -112,7 +114,7 @@ class HotelAppartmentController extends Controller
      */
     public function edit($id)
     {
-        $hotels = Hotel::orderBy('id', 'DESC')->get();
+        $hotels = Hotel::where('type', 'hotel')->orderBy('id', 'DESC')->get();
         $types = TypeAppartment::orderBy('id', 'DESC')->get();
         $appartment = HotelAppartment::find($id);
         return view('hotels.appartments.edit', compact('hotels', 'types', 'appartment'));

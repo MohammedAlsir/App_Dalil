@@ -34,25 +34,41 @@
                         <ul class="nav child_menu">
                             <li><a href="{{route('hotels.index')}}">كل الفنادق</a></li>
                             <li><a href="{{route('hotels.create')}}">إضافة فندق جديد</a></li>
+                            <li><a href="{{route('appartment.index')}}">كل الشقق الفندقية</a></li>
+                            <li><a href="{{route('appartment.create')}}">إضافة شقة فندقية جديدة</a></li>
+                            <li><a href="{{route('appartment_request')}}">طلبات الشقق الفندقية</a></li>
                         </ul>
                     </li>
 
-                    <li><a><i class="fa fa-cubes"></i>الشقق الفندقية<span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-cubes"></i>الوحدات السكنية <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="{{route('units.index')}}">كل الوحدات السكنية</a></li>
+                            <li><a href="{{route('units.create')}}">إضافة وحدة سكنية جديدة</a></li>
+                            <li><a href="{{route('appartments.index')}}">كل  الشقق السكنية  </a></li>
+                            <li><a href="{{route('appartments.create')}}">إضافة شقة سكنية جديدة</a></li>
+                            <li><a href="{{route('appartments_request')}}">طلبات الشقق السكنية</a></li>
+                        </ul>
+                    </li>
+
+                    {{-- <li><a><i class="fa fa-cubes"></i>الشقق الفندقية<span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{route('appartment.index')}}">كل الشقق</a></li>
                             <li><a href="{{route('appartment.create')}}">إضافة شقة جديدة</a></li>
+                            <li><a href="{{route('appartment_request')}}">طلبات الشقق الفندقية</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
 
-                    <li><a href="{{route('appartment_request')}}"><i class="fa fa-home"></i>طلبات الشقق الفندقية</a></li>
+                    {{-- <li><a href="{{route('appartment_request')}}"><i class="fa fa-home"></i>طلبات الشقق الفندقية</a></li> --}}
 
 
                     <li><a><i class="fa fa-cubes"></i>السيارات<span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{route('cars.index')}}">كل السيارات</a></li>
                             <li><a href="{{route('cars.create')}}">إضافة سيارة جديدة</a></li>
+                            <li><a href="{{route('car_request')}}">طلبات السيارات </a></li>
                         </ul>
                     </li>
+
 
                     <!-- Hotels -->
 

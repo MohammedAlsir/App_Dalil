@@ -28,7 +28,7 @@ class Hotel extends Model
 
     public function like()
     {
-        return $this->hasMany(Like::class);
+        return $this->hasMany(Like::class, 'hotel_id');
     }
 
     // public function liked()

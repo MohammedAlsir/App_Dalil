@@ -27,11 +27,21 @@ class GetController extends Controller
 
     public function get_hotels($city_id) // Get All hotels by city id
     {
-        $hotels = Hotel::where('city_id', $city_id)->orderBy('id', 'DESC')->get();
+        $hotels = Hotel::with('images')->withCount('like')->where('type', 'hotel')->where('city_id', $city_id)->orderBy('id', 'DESC')->get();
         foreach ($hotels as $item) {
             $item->city->state;
             // $item->setAttribute('likes', $item->like->count());
         }
         return $this->returnData('hotels', $hotels);
+    }
+
+    public function get_units($city_id) // Get All units by city id
+    {
+        $units = Hotel::with('images')->withCount('like')->where('type', 'unit')->where('city_id', $city_id)->orderBy('id', 'DESC')->get();
+        foreach ($units as $item) {
+            $item->city->state;
+            // $item->setAttribute('likes', $item->like->count());
+        }
+        return $this->returnData('units', $units);
     }
 }

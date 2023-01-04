@@ -27,4 +27,9 @@ class HotelAppartment extends Model
     {
         return $this->hasMany(Image::class, 'appartment_id');
     }
+
+    public function like()
+    {
+        return $this->hasMany(Like::class, 'appartment_id');
+    }
 }

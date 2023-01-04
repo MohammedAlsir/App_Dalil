@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hotel;
+use App\Models\HotelAppartment;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
-class HotelController extends Controller
+class UnitAppartmentsController extends Controller
 {
-    private $uploadPath = "uploads/hotels/";
+    private $uploadPath = "uploads/hotels/appartments";
 
     /**
      * Display a listing of the resource.
@@ -18,9 +19,9 @@ class HotelController extends Controller
      */
     public function index()
     {
-        $hotels = Hotel::where('type', 'hotel')->orderBy('id', 'DESC')->get();
+        $unit_appartment  = HotelAppartment::where('type', 'unit')->orderBy('id', 'DESC')->get();
         $index = 1;
-        return view('hotels.index', compact('hotels', 'index'));
+        return view('units.appartments.index', compact('unit_appartment', 'index'));
     }
 
     /**
@@ -30,7 +31,10 @@ class HotelController extends Controller
      */
     public function create()
     {
-        return view('hotels.create');
+        $units = Hotel::where('type', 'unit')->orderBy('id', 'DESC')->get();
+        // $types = TypeAppartment::orderBy('id', 'DESC')->get();
+
+        return view('units.appartments.create', compact('units'));
     }
 
     /**
@@ -44,27 +48,30 @@ class HotelController extends Controller
         $request->validate([
             'name_ar' => 'required',
             'name_en' => 'required',
-            'state' => 'required',
-            'city' => 'required',
-            'stars' => 'required',
+            'hotel' => 'required',
+            // 'type' => 'required',
+            'night_price' => 'required',
             'photo' => 'max:3', // checks length of array
             'photo.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-
         ], [
             'photo.max' => 'عدد الصور اكثر من العدد المحدد'
         ]);
-        $hotel = new Hotel();
-        $hotel->type = "hotel";
-        $hotel->name_ar = $request->name_ar;
-        $hotel->name_en = $request->name_en;
-        $hotel->city_id = $request->city;
-        $hotel->stars = $request->stars;
-        $hotel->features_ar = $request->features_ar;
-        $hotel->features_en = $request->features_en;
-
-        $hotel->location_ar = $request->location_ar;
-        $hotel->location_en = $request->location_en;
-        $hotel->save();
+        $unit_appartment = new HotelAppartment();
+        // Is Required
+        $unit_appartment->type = "unit";
+        $unit_appartment->name_ar = $request->name_ar;
+        $unit_appartment->name_en = $request->name_en;
+        $unit_appartment->hotel_id = $request->hotel;
+        // $unit_appartment->type_appartment_id = $request->type;
+        $unit_appartment->night_price = $request->night_price;
+        // Is Not Required
+        $unit_appartment->features_ar = $request->features_ar;
+        $unit_appartment->features_en = $request->features_en;
+        $unit_appartment->floor_ar = $request->floor_ar;
+        $unit_appartment->floor_en = $request->floor_en;
+        $unit_appartment->number_of_rooms = $request->number_of_rooms;
+        $unit_appartment->discount = $request->discount;
+        $unit_appartment->save();
 
         // For Photo
         if ($request->hasFile('photo')) {
@@ -77,15 +84,14 @@ class HotelController extends Controller
                 $path = $this->uploadPath;
                 $request->file('photo')[$index]->move($path, $fileFinalName);
                 $image->photo = $fileFinalName;
-                $image->hotel_id = $hotel->id;
+                $image->appartment_id = $unit_appartment->id;
                 $image->save();
             }
         }
         // For Photo
 
-
-        toastr()->info('تم اضافة الفندق ', 'نجاح');
-        return redirect()->route('hotels.index');
+        toastr()->info('تم اضافة الشقة السكنية ', 'نجاح');
+        return redirect()->route('appartments.index');
     }
 
     /**
@@ -96,9 +102,7 @@ class HotelController extends Controller
      */
     public function show($id)
     {
-        $hotel = Hotel::find($id);
-        $index = 1;
-        return view('hotels.show', compact('hotel', 'index'));
+        //
     }
 
     /**
@@ -109,8 +113,10 @@ class HotelController extends Controller
      */
     public function edit($id)
     {
-        $hotel = Hotel::find($id);
-        return view('hotels.edit', compact('hotel'));
+        $units = Hotel::where('type', 'unit')->orderBy('id', 'DESC')->get();
+        // $types = TypeAppartment::orderBy('id', 'DESC')->get();
+        $appartment = HotelAppartment::find($id);
+        return view('units.appartments.edit', compact('units', 'appartment'));
     }
 
     /**
@@ -125,9 +131,9 @@ class HotelController extends Controller
         $request->validate([
             'name_ar' => 'required',
             'name_en' => 'required',
-            'state' => 'required',
-            'city' => 'required',
-            'stars' => 'required',
+            'hotel' => 'required',
+            // 'type' => 'required',
+            'night_price' => 'required',
             'photo' => 'max:3', // checks length of array
             'photo.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             // 'location_ar' => '',
@@ -135,25 +141,29 @@ class HotelController extends Controller
         ], [
             'photo.max' => 'عدد الصور اكثر من العدد المحدد'
         ]);
-        $hotel =  Hotel::find($id);
-        $hotel->name_ar = $request->name_ar;
-        $hotel->name_en = $request->name_en;
-        $hotel->city_id = $request->city;
-        $hotel->stars = $request->stars;
-        $hotel->features_ar = $request->features_ar;
-        $hotel->features_en = $request->features_en;
-
-        $hotel->location_ar = $request->location_ar;
-        $hotel->location_en = $request->location_en;
-        $hotel->save();
+        $hotel_appartment =  HotelAppartment::find($id);
+        // Is Required
+        $hotel_appartment->name_ar = $request->name_ar;
+        $hotel_appartment->name_en = $request->name_en;
+        $hotel_appartment->hotel_id = $request->hotel;
+        // $hotel_appartment->type_appartment_id = $request->type;
+        $hotel_appartment->night_price = $request->night_price;
+        // Is Not Required
+        $hotel_appartment->features_ar = $request->features_ar;
+        $hotel_appartment->features_en = $request->features_en;
+        $hotel_appartment->floor_ar = $request->floor_ar;
+        $hotel_appartment->floor_en = $request->floor_en;
+        $hotel_appartment->number_of_rooms = $request->number_of_rooms;
+        $hotel_appartment->discount = $request->discount;
+        $hotel_appartment->save();
 
         // For Photo
-        $image_count = Image::where('hotel_id', $id)->count();
+        $image_count = Image::where('appartment_id', $id)->count();
 
 
         if ($request->hasFile('photo')) {
             if ($image_count >= 3) {
-                toastr()->error('الفندق لدية 3 صور سابقة لايمكن اضافة المزيد احذف بعض الصور السابقة اولا', 'خطأ');
+                toastr()->error('الشقة لديها 3 صور سابقة لايمكن اضافة المزيد احذف بعض الصور السابقة اولا', 'خطأ');
                 return redirect()->back();
             }
             foreach ($request->file('photo') as $index => $imagefile) {
@@ -165,14 +175,13 @@ class HotelController extends Controller
                 $path = $this->uploadPath;
                 $request->file('photo')[$index]->move($path, $fileFinalName);
                 $image->photo = $fileFinalName;
-                $image->hotel_id = $hotel->id;
+                $image->appartment_id = $hotel_appartment->id;
                 $image->save();
             }
         }
 
 
-        toastr()->info('تم تعديل بيانات الفندق ', 'نجاح');
-        // return redirect()->route('hotels.index');
+        toastr()->info('تم تعديل بيانات الشقة السكنية ', 'نجاح');
         return redirect()->back();
     }
 
@@ -184,22 +193,8 @@ class HotelController extends Controller
      */
     public function destroy($id)
     {
-        $hotel =  Hotel::find($id);
-        if ($hotel->appartment->count() > 0) {
-            toastr()->error('هذا الفندق يحتوي على شقق قم بحذف الشقق اولا', 'خطأ');
-            return redirect()->route('hotels.index');
-        } else {
-            $hotel->delete();
-            toastr()->info('تم حذف الفندق ', 'نجاح');
-            return redirect()->route('hotels.index');
-        }
-    }
-
-    // Delete image by ID
-    public function delete_image($id)
-    {
-        Image::find($id)->delete();
-        toastr()->info('تم حذف الصورة ', 'نجاح');
-        return redirect()->back();
+        HotelAppartment::find($id)->delete();
+        toastr()->info('تم حذف الشقة السكنية ', 'نجاح');
+        return redirect()->route('appartments.index');
     }
 }

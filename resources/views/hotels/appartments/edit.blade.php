@@ -83,10 +83,10 @@
                 @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="floor_{{$localeCode}}">الطابق
-                            <span class="required"><i class="flag">{!! @Helper::languageName($localeCode) !!}</i></span>
+                            <span class="required">*<i class="flag">{!! @Helper::languageName($localeCode) !!}</i></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" value="{!! $appartment->{'floor_'.$localeCode} !!}" id="floor_{{$localeCode}}" name="floor_{{$localeCode}}"
+                            <input type="text" required value="{!! $appartment->{'floor_'.$localeCode} !!}" id="floor_{{$localeCode}}" name="floor_{{$localeCode}}"
                                 class="form-control col-md-7 col-xs-12">
                         </div>
                     </div>
@@ -94,11 +94,11 @@
 
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number_of_rooms">عدد الغرف
-                        <span class="required">
+                        <span class="required">*
                         </span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input value="{{ $appartment->number_of_rooms }}" type="number" id="number_of_rooms" name="number_of_rooms"
+                        <input value="{{ $appartment->number_of_rooms }}" required type="number" id="number_of_rooms" name="number_of_rooms"
                             class="form-control col-md-7 col-xs-12">
                     </div>
                 </div>
@@ -106,10 +106,10 @@
                 @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="features_{{$localeCode}}">المميزات
-                            <span class="required"><i class="flag">{!! @Helper::languageName($localeCode) !!}</i></span>
+                            <span class="required">*<i class="flag">{!! @Helper::languageName($localeCode) !!}</i></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <textarea id="mytextarea" rows="5" name="features_{{$localeCode}}"
+                            <textarea id="mytextarea" required rows="5" name="features_{{$localeCode}}"
                                 class="form-control col-md-7 col-xs-12">{!! $appartment->{'features_'.$localeCode} !!}</textarea>
                         </div>
                     </div>
@@ -136,7 +136,7 @@
 
 
                 <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >الصور </label>
+                    {{-- <label class="control-label col-md-3 col-sm-3 col-xs-12" >الصور </label> --}}
                     <div class="col-md-6 col-sm-6 col-xs-12" style="padding:0">
                             {{-- <form action=""> --}}
 

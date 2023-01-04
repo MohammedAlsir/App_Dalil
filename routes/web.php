@@ -31,9 +31,11 @@ Route::namespace('App\Http\Controllers')->middleware(['auth'])->group(function (
     Route::put('settings', 'SettingController@settings_edit')->name('settings_edit');
 
     Route::resource('hotels', 'HotelController');
+    Route::resource('units', 'UnitsController');
     // Delete image by ID
     Route::delete('delete/image/{id}', 'HotelController@delete_image')->name('delete.image');
     Route::resource('hotel/appartment', 'HotelAppartmentController');
+    Route::resource('unit/appartments', 'UnitAppartmentsController');
     Route::resource('state/city', 'StateCityController');
 
     Route::resource('cars', 'CarController');
@@ -41,5 +43,8 @@ Route::namespace('App\Http\Controllers')->middleware(['auth'])->group(function (
 
     // All Request
     // Hotel Appartment Request
-    Route::get('appartment/request', 'RequestController@appartment_request')->name('appartment_request');
+    Route::get('appartment/request', 'RequestController@hotel_appartment_request')->name('appartment_request');
+    Route::get('appartments/request', 'RequestController@unit_appartments_request')->name('appartments_request');
+    // Cars Request
+    Route::get('car/request', 'RequestController@car_request')->name('car_request');
 });

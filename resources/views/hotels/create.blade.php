@@ -38,7 +38,7 @@
                 @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name_{{$localeCode}}">الاسم
-                        <span class="required"><i class="flag">{!! @Helper::languageName($localeCode) !!}</i></span>
+                        <span class="required">*<i class="flag">{!! @Helper::languageName($localeCode) !!}</i></span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <input type="text" required id="name_{{$localeCode}}" name="name_{{$localeCode}}"
@@ -52,6 +52,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="stars">
                         النجوم
+                        <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <select id="stars" name="stars" required  class="form-control col-md-7 col-xs-12">
@@ -70,7 +71,7 @@
 
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="location_{{$localeCode}}">الموقع
-                        <span class="required"><i class="flag">{!! @Helper::languageName($localeCode) !!}</i></span>
+                        <span class="required">*<i class="flag">{!! @Helper::languageName($localeCode) !!}</i></span>
 
                             <span class="required">
                                 <span style="color: red">موقع الفندق بالتحديد</span>
@@ -78,7 +79,7 @@
                             </span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" id="location_{{$localeCode}}" name="location_{{$localeCode}}"
+                            <input type="text" required id="location_{{$localeCode}}" name="location_{{$localeCode}}"
                                 class="form-control col-md-7 col-xs-12">
                         </div>
                     </div>
@@ -89,10 +90,10 @@
 
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Features_{{$localeCode}}">المميزات
-                            <span class="required"><i class="flag">{!! @Helper::languageName($localeCode) !!}</i></span>
+                            <span class="required">*<i class="flag">{!! @Helper::languageName($localeCode) !!}</i></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <textarea id="mytextarea" rows="5" name="features_{{$localeCode}}"
+                            <textarea id="mytextarea" required rows="5" name="features_{{$localeCode}}"
                                 class="form-control col-md-7 col-xs-12"></textarea>
                         </div>
                     </div>

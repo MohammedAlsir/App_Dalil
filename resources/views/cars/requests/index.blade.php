@@ -4,7 +4,7 @@
 <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
         <div class="x_title">
-            <h2> طلبات الشقق الفندقية </h2>
+            <h2> طلبات  السيارات </h2>
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
@@ -17,8 +17,8 @@
                             <thead>
                                 <tr>
                                     <th>الرقم</th>
-                                    <th>اسم الغرفة</th>
-                                    <th>اسم الفندق</th>
+                                    <th>اسم السيارة</th>
+                                    <th>نوع السيارة</th>
                                     <th>من تاريخ</th>
                                     <th>الي تاريخ</th>
                                     <th>حالة الطلب</th>
@@ -28,20 +28,41 @@
 
 
                             <tbody>
-                                @foreach ($apprtment_request as $item)
+                                @foreach ($car_request as $item)
                                 <tr>
                                     <td>{{$index ++}}</td>
-                                    <td>{{$item->appartment->name_ar}} - {{$item->appartment->name_en}}</td>
-                                    <td>{{$item->appartment->hotel->name_ar}} - {{$item->appartment->hotel->name_en}}</td>
+                                    <td>{{$item->car->name_ar}} - {{$item->car->name_en}}</td>
+                                    <td>
+                                        @switch($item->car->type)
+                                            @case(1)
+                                                صغيرة - small
+                                                @break
+                                            @case(2)
+                                                متوسطة - Medium
+                                                @break
+                                            @case(3)
+                                                كبيرة - Big
+                                                @break
+                                            @case(4)
+                                                فاخرة - Deluxe
+                                                @break
+                                            @case(5)
+                                                عائلية - Familial
+                                                @break
+                                            @case(6)
+                                                مراسم - Ceremony
+                                                @break
+                                        @endswitch
+                                    </td>
                                     <td>{{$item->from}}</td>
                                     <td>{{$item->to}}</td>
-                                    <td>@livewire('change-state-appartmen-request', ['request_id' => $item->id], key($item->id))</td>
+                                    <td>@livewire('chang-state-request', ['request_id' => $item->id ,'type'=>'1'], key($item->id))</td>
 
 
                                     <td>
-                                        <form action="{{route('appartment.destroy',$item->id)}}" method="POST">
-                                            {{ csrf_field()}}
-                                            {{ method_field('delete') }}
+                                        {{-- <form action="{{route('cars.destroy',$item->id)}}" method="POST"> --}}
+                                            {{-- {{ csrf_field()}}
+                                            {{ method_field('delete') }} --}}
                                             <!-- Data Of user -->
                                             <button type="button" class="btn btn-primary sm-btn-sm btn-sm"
                                                 data-toggle="modal" data-target="#user-{{$item->id}}"><i
@@ -56,7 +77,7 @@
                                                 class="show_confirm  btn btn-danger sm-btn-sm btn-sm"><i
                                                     class="fa fa-remove "></i></button> --}}
 
-                                        </form>
+                                        {{-- </form> --}}
 
                                     </td>
                                 </tr>
@@ -67,67 +88,76 @@
                                 <!-- Modal -->
                                 <div class="modal fade" id="show-{{$item->id}}" tabindex="-1" role="dialog"
                                     aria-hidden="true">
-                                    <div class="modal-dialog modal-md">
+                                   <div class="modal-dialog modal-md">
                                         <div class="modal-content">
 
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal"><span
                                                         aria-hidden="true">×</span>
                                                 </button>
-                                                <h4 class="modal-title" id="myModalLabel">تفاصيل طلب الشقة الفندقية</h4>
+                                                <h4 class="modal-title" id="myModalLabel">تفاصيل طلب السيارة</h4>
                                             </div>
                                             <div class="modal-body">
                                                 <ul class="list-unstyled msg_list">
                                                     <li>
                                                         <a>
                                                             <span>
-                                                                <span>اسم الشقة الفندقية</span>
+                                                                <span>اسم السيارة </span>
                                                             </span>
                                                             <span class="message">
-                                                                {{$item->appartment->name_ar}} - {{$item->appartment->name_en}}
+                                                                {{$item->car->name_ar}} - {{$item->car->name_en}}
                                                             </span>
                                                         </a>
                                                     </li>
                                                     <li>
                                                         <a>
                                                             <span>
-                                                                <span>الفندق</span>
+                                                                <span>نوع السيارة</span>
                                                             </span>
                                                             <span class="message">
-                                                                {{$item->appartment->hotel->name_ar}} - {{$item->appartment->hotel->name_en}}
+                                                                @switch($item->car->type)
+                                                                    @case(1)
+                                                                        صغيرة - small
+                                                                        @break
+                                                                    @case(2)
+                                                                        متوسطة - Medium
+                                                                        @break
+                                                                    @case(3)
+                                                                        كبيرة - Big
+                                                                        @break
+                                                                    @case(4)
+                                                                        فاخرة - Deluxe
+                                                                        @break
+                                                                    @case(5)
+                                                                        عائلية - Familial
+                                                                        @break
+                                                                    @case(6)
+                                                                        مراسم - Ceremony
+                                                                        @break
+                                                                @endswitch
                                                             </span>
                                                         </a>
                                                     </li>
                                                     <li>
                                                         <a>
                                                             <span>
-                                                                <span>نوع الغرفة</span>
+                                                                <span>سعر السيارة عند الحجز</span>
                                                             </span>
                                                             <span class="message">
-                                                                    {{$item->appartment->type_appartment->name_ar}} -{{$item->appartment->type_appartment->name_en}}
+                                                                {{number_format($item->day_price)}}
                                                             </span>
                                                         </a>
                                                     </li>
                                                     <li>
                                                         <a>
                                                             <span>
-                                                                <span>سعر الليلة عند الحجز</span>
+                                                                <span>سعر السائق عند الحجز</span>
                                                             </span>
                                                             <span class="message">
-                                                                {{number_format($item->night_price)}}
-                                                            </span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a>
-                                                            <span>
-                                                                <span>التخفيض عند الحجز</span>
-                                                            </span>
-                                                            <span class="message">
-                                                                @if ($item->discount)
-                                                                    {{number_format($item->discount)}}
+                                                                @if ($item->driver_price)
+                                                                    {{number_format($item->driver_price)}}
                                                                 @else
-                                                                    لا يوجد
+                                                                    الطلب لا يشمل سائق
                                                                 @endif
 
                                                             </span>
@@ -137,7 +167,7 @@
                                                     <li>
                                                         <a>
                                                             <span>
-                                                                <span>تاريخ القدوم</span>
+                                                                <span>من تاريخ </span>
                                                             </span>
                                                             <span class="message">
                                                                 {{$item->from}}
@@ -148,7 +178,7 @@
                                                     <li>
                                                         <a>
                                                             <span>
-                                                                <span>تاريخ المغادرة</span>
+                                                                <span>الى تاريخ </span>
                                                             </span>
                                                             <span class="message">
                                                                 {{$item->to}}
