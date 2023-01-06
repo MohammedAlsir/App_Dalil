@@ -76,7 +76,7 @@ class GetController extends Controller
         foreach ($format_request as $item) {
             $item->appartment->images;
             $item->appartment->type_appartment;
-            $item->appartment->hotel->city;
+            $item->appartment->hotel->city->state;
             $item->appartment->hotel->images;
         }
         return $this->returnData('all_requests', $format_request);
