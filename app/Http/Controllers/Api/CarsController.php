@@ -123,7 +123,7 @@ class CarsController extends Controller
             $validator = Validator::make(
                 $request->all(),
                 [
-                    'notice_photo'      => 'required|image',
+                    'notice_photo'      => 'image',
                     'payment_method'     => 'required|in:cash,bank',
                 ]
             );
