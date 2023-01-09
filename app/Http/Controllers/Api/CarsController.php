@@ -26,8 +26,11 @@ class CarsController extends Controller
             $cars->where('motion_vector', $request->motion_vector);
         if ($request->number_of_passengers)
             $cars->where('number_of_passengers', $request->number_of_passengers);
+
         if ($request->price_from && $request->price_to)
             $cars->whereBetween('day_price', [$request->price_from, $request->price_to]);
+        elseif ($request->price_from)
+            $cars->where('day_price', '>=', $request->price_from);
 
         return $this->returnData('cars', $cars->orderBy('id', 'DESC')->get());
     }
